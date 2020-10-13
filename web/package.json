@@ -1,0 +1,42 @@
+{
+  "name": "drm-api-plugins",
+  "version": "1.0.0",
+  "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server",
+    "start": "ts-node src/index.ts",
+    "build": "rollup -c ./rollup.config.js",
+    "eslint": "eslint 'src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/r8szq0vy/drm-api-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/r8szq0vy/drm-api-plugin#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^14.6.3",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "http-server": "^0.12.3",
+    "rollup": "^2.26.9",
+    "ts-node": "^9.0.0",
+    "tslib": "^2.0.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@types/long": "^4.0.1",
+    "conditional-type-checks": "^1.0.5",
+    "lodash": "^4.17.20",
+    "long": "^4.0.0"
+  }
+}

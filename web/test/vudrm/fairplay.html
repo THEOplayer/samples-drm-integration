@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vudrm Fairplay Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'vudrm',
+        'fairplay',
+        new ContentProtectionIntegrations.VudrmFairplayContentProtectionIntegrationFactory()
+    );
+
+    player.source = {
+        sources: [
+            {
+                src: 'insert manifest url here',
+                contentProtection: {
+                    fairplay: {
+                        certificateURL: 'insert certificate url here',
+                        licenseAcquisitionURL: 'insert license url here'
+                    },
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'vudrm',
+                    integrationParameters: {
+                        token: 'insert token here'
+                    }
+                }
+            }
+        ],
+    };
+</script>
+</body>
+</html>
