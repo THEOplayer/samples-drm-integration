@@ -10,6 +10,7 @@
 		D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */; };
 		D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */; };
 		D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */; };
+		D99BC03525A4679200AE24B0 /* EzdrmDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BC03425A4679200AE24B0 /* EzdrmDRMIntegration.swift */; };
 		E279FE3A25139E4700EC0EFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279FE3925139E4700EC0EFA /* AppDelegate.swift */; };
 		E279FE3C25139E4700EC0EFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279FE3B25139E4700EC0EFA /* SceneDelegate.swift */; };
 		E279FE3E25139E4700EC0EFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E279FE3D25139E4700EC0EFA /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 		D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VuDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UplynkDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDRMIntegration.swift; sourceTree = "<group>"; };
+		D99BC03425A4679200AE24B0 /* EzdrmDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzdrmDRMIntegration.swift; sourceTree = "<group>"; };
 		E279FE3625139E4700EC0EFA /* ContentProtectionIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContentProtectionIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E279FE3925139E4700EC0EFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E279FE3B25139E4700EC0EFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */,
 				D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */,
 				D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */,
+				D99BC03425A4679200AE24B0 /* EzdrmDRMIntegration.swift */,
 			);
 			path = integration;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99BC03525A4679200AE24B0 /* EzdrmDRMIntegration.swift in Sources */,
 				D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */,
 				E279FE3E25139E4700EC0EFA /* ViewController.swift in Sources */,
 				D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */,
