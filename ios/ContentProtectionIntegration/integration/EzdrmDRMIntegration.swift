@@ -26,21 +26,21 @@ class EzdrmDRMIntegration: ContentProtectionIntegration {
     }
 
     func onLicenseRequest(request: LicenseRequest, callback: LicenseRequestCallback) {
-        // Setting the `request.url` to a valid dummy URL is necessary to bypass a known limitation.
-        // Please note: As of THEOplayerSDK v2.81.0, you could just use the method `LicenseRequestCallback.respond(:data)` inside `onLicenseRequest` without the need to use `onLicenseResponse`.
-        request.url = "https://httpstatuses.com/200"
-        callback.request(request: request)
-    }
-
-    func onLicenseResponse(response: LicenseResponse, callback: LicenseResponseCallback) {
-        guard let serviceUrl = URL(string: response.request.url) else {
-            fatalError("'\(response.request.url)' is not a valid URL")
-        }
-        var request = URLRequest(url: serviceUrl)
-        request.httpMethod = "POST"
-        request.httpBody = response.request.body
-        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        // `LicenseRequestCallback.respond(:data)` - `LicenseRequestCallback.error(:error)` - `CertificateRequestCallback.respond(:data)` and
+        // `CertificateRequestCallback.error(:error)` are available as of v2.81.0, so in THEOplayer versions < 2.81.0, setting the `request.url` to a valid
+        // dummy URL is necessary to bypass a known limitation.
+        // - step: 1
+        //      in `onLicenseRequest(:request:callback)`
+        //      request.url = "https://httpstatuses.com/200"
+        //      callback.request(request: request)
+        // - step: 2
+        //      in `onLicenseResponse(:response:callback)` you need to download the actual license
+        //      and give it back to THEOplayer using `LicenseResponseCallback.respond(:data)`
+        var urlRequest = URLRequest(url: URL(string: request.url)!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = request.body
+        urlRequest.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let data = data {
                 callback.respond(license: data)
             } else {
