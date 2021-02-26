@@ -18,6 +18,8 @@ import { AxinomDrmPlayReadyContentProtectionIntegrationFactory } from
         './integration/axinomdrm/AxinomDrmPlayReadyContentProtectionIntegrationFactory';
 import { AxinomDrmFairplayContentProtectionIntegrationFactory } from
         './integration/axinomdrm/AxinomDrmFairplayContentProtectionIntegrationFactory';
+import { IrdetoControlFairplayContentProtectionIntegrationFactory} from
+        './integration/irdetocontrol/IrdetoControlFairplayContentProtectionIntegrationFactory';
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -29,5 +31,6 @@ export {
     EzdrmFairplayContentProtectionIntegrationFactory,
     AzureDrmWidevineContentProtectionIntegrationFactory,
     AzureDrmPlayReadyContentProtectionIntegrationFactory,
-    AzureDrmFairplayContentProtectionIntegrationFactory
+    AzureDrmFairplayContentProtectionIntegrationFactory,
+    IrdetoControlFairplayContentProtectionIntegrationFactory
 };
