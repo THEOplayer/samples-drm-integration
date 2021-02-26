@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm PlayReady Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'comcast',
+        'playready',
+        new ContentProtectionIntegrations.ComcastDrmPlayReadyContentProtectionIntegrationFactory()
+    );
+
+    player.source = {
+        sources: [
+            {
+                src: 'insert manifest url here',
+                contentProtection: {
+                    integration: 'comcast',
+                    playready: {
+                        licenseAcquisitionURL: 'insert license url here',
+                    },
+                    preferredKeySystems: ['playready', 'widevine', 'fairplay'],
+                    integrationParameters: {
+                        token: 'insert token here'
+                    }
+                }
+            }
+        ]
+    };
+</script>
+</body>
+</html>

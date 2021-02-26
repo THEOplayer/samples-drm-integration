@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm Widevine Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'comcast',
+        'widevine',
+        new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
+    );
+
+    /**
+     * [
+     {
+    "src": "https://live.rte.ie/live/a/channel3/channel3.isml/.mpd?dvr_window_length=30&available=1607004000&expiry=1607036400&ip=108.54.64.36&filter=systemBitrate%3C%3D100000000&token1=7c0de2142920d92b329ba4f37a80617e20d4dd7ca9043824d09364f4c26611a4",
+    "type": "application/dash+xml",
+    "contentProtection": {
+      "widevine": {
+        "licenseAcquisitionURL": "https://widevine.entitlement.eu.theplatform.com/wv/web/ModularDrm",
+        "queryParameters": {
+          "token": "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJydGUtcHJkLXByZC10cnQvYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImlzcyI6IjEiLCJleHAiOjE2MDcwOTI4NTQsImlhdCI6MTYwNzAwNjQ1NDE0NiwianRpIjoiYTIxNzBhMTEtMTJiMS00NDY2LTk5YTItYTFlNWFkOGZkM2E0IiwiZGlkIjoicnRlLXByZC1wcmQtdHJ0IiwidW5tIjoiYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImN0eCI6IntcInVzZXJOYW1lXCI6XCJhbm9ueW1vdXNfbmdycF9wbGF5ZXJAcnRlLmllXCJ9XG4iLCJvaWQiOm51bGx9.V8WLNmPsMTWLWqMzkK7emi4YQwZru31kH5YkJngeCw7LAbrRYDvmp0e7PF268OxEnQYSeWYsxRahN-itBg4yQ680PjW_rpTD8gklKsEKLDB-OofmiJ0NbAdRokzAlr3dkeWlJLSGUwMXen7VM2PcKekTVstixTjZ8mAnOEUIR5y5lEki5F4vPyaZKzCAiLFl7QBxre9RmOqK57oKeprz0muCYJNacKfcVsl3MuPowHu1f9qYuGCpCRnlN2LMMSZ9WjSh5Evl8Ij99x1M7DWXgL56Kb9sXwBum4Jv5IuWYmv-SCyGyk39ZC5cJ0vuzXzsBBT33Wz8lhr8BC8iXpXXxw",
+          "account": "http://access.auth.theplatform.com/data/Account/2700894001",
+          "form": "json",
+          "schema": "1.0"
+        }
+      },
+      "playready": {
+        "licenseAcquisitionURL": "https://playready3.entitlement.eu.theplatform.com/playready/rightsmanager.asmx",
+        "queryParameters": {
+          "account": "https://access.auth.theplatform.com/data/Account/2700894001",
+          "auth": "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJydGUtcHJkLXByZC10cnQvYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImlzcyI6IjEiLCJleHAiOjE2MDcwOTI4NTQsImlhdCI6MTYwNzAwNjQ1NDE0NiwianRpIjoiYTIxNzBhMTEtMTJiMS00NDY2LTk5YTItYTFlNWFkOGZkM2E0IiwiZGlkIjoicnRlLXByZC1wcmQtdHJ0IiwidW5tIjoiYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImN0eCI6IntcInVzZXJOYW1lXCI6XCJhbm9ueW1vdXNfbmdycF9wbGF5ZXJAcnRlLmllXCJ9XG4iLCJvaWQiOm51bGx9.V8WLNmPsMTWLWqMzkK7emi4YQwZru31kH5YkJngeCw7LAbrRYDvmp0e7PF268OxEnQYSeWYsxRahN-itBg4yQ680PjW_rpTD8gklKsEKLDB-OofmiJ0NbAdRokzAlr3dkeWlJLSGUwMXen7VM2PcKekTVstixTjZ8mAnOEUIR5y5lEki5F4vPyaZKzCAiLFl7QBxre9RmOqK57oKeprz0muCYJNacKfcVsl3MuPowHu1f9qYuGCpCRnlN2LMMSZ9WjSh5Evl8Ij99x1M7DWXgL56Kb9sXwBum4Jv5IuWYmv-SCyGyk39ZC5cJ0vuzXzsBBT33Wz8lhr8BC8iXpXXxw",
+          "releasePid": "_aYe7zZ6px_E",
+          "schema": "1.0"
+        }
+      }
+    }
+  }
+     ]
+     */
+
+    player.source = {
+        sources: [
+            {
+                // src: 'insert manifest url here',
+                src: 'https://live.rte.ie/live/a/channel3/channel3.isml/.mpd?dvr_window_length=30&available=1607004000&expiry=1607036400&ip=108.54.64.36&filter=systemBitrate%3C%3D100000000&token1=7c0de2142920d92b329ba4f37a80617e20d4dd7ca9043824d09364f4c26611a4',
+                contentProtection: {
+                    widevine: {
+                        licenseAcquisitionURL: 'https://widevine.entitlement.eu.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json',
+                        // licenseAcquisitionURL: 'insert certificate url here',
+                    },
+                    preferredKeySystems: ['widevine', 'playready', 'fairplay'],
+                    integration: 'comcast',
+                    integrationParameters: {
+                        token: 'eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJydGUtcHJkLXByZC10cnQvYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImlzcyI6IjEiLCJleHAiOjE2MDcwOTI4NTQsImlhdCI6MTYwNzAwNjQ1NDE0NiwianRpIjoiYTIxNzBhMTEtMTJiMS00NDY2LTk5YTItYTFlNWFkOGZkM2E0IiwiZGlkIjoicnRlLXByZC1wcmQtdHJ0IiwidW5tIjoiYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImN0eCI6IntcInVzZXJOYW1lXCI6XCJhbm9ueW1vdXNfbmdycF9wbGF5ZXJAcnRlLmllXCJ9XG4iLCJvaWQiOm51bGx9.V8WLNmPsMTWLWqMzkK7emi4YQwZru31kH5YkJngeCw7LAbrRYDvmp0e7PF268OxEnQYSeWYsxRahN-itBg4yQ680PjW_rpTD8gklKsEKLDB-OofmiJ0NbAdRokzAlr3dkeWlJLSGUwMXen7VM2PcKekTVstixTjZ8mAnOEUIR5y5lEki5F4vPyaZKzCAiLFl7QBxre9RmOqK57oKeprz0muCYJNacKfcVsl3MuPowHu1f9qYuGCpCRnlN2LMMSZ9WjSh5Evl8Ij99x1M7DWXgL56Kb9sXwBum4Jv5IuWYmv-SCyGyk39ZC5cJ0vuzXzsBBT33Wz8lhr8BC8iXpXXxw',
+                        releasePid: '1SSZBOt53xQX',
+                        accountId: 'http://access.auth.theplatform.com/data/Account/2700894001'
+                    }
+                }
+            }
+        ]
+    }
+
+</script>
+</body>
+</html>

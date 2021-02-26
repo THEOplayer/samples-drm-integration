@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm FairPlay Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'comcast',
+        'fairplay',
+        new ContentProtectionIntegrations.ComcastDrmFairPlayContentProtectionIntegrationFactory()
+    );
+
+    player.source = {
+        sources: [
+            {
+                // src: 'insert manifest url here',
+                src: 'https://live.rte.ie/live/a/channel3/channel3.isml/.m3u8?dvr_window_length=30&available=1608040800&expiry=1608073200&ip=108.54.64.36&filter=systemBitrate%3C%3D100000000&token1=e4c54b0a24e04d4f8f69091cd59b475ca7312c4d413847e57b6f3311b925a07f',
+                contentProtection: {
+                    fairplay: {
+                        certificateURL: 'https://cdn.theoplayer.com/demos/rte/fairplay/rte_fairplay.der',
+                        // certificateURL: 'insert certificate url here',
+                        licenseAcquisitionURL: 'https://fairplay.entitlement.eu.theplatform.com/fpls/web/FairPlay?schema=1.0'
+                        // licenseAcquisitionURL: 'insert license url here'
+                    },
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'comcast',
+                    integrationParameters: {
+                        token: 'eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJydGUtcHJkLXByZC10cnQvYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImlzcyI6IjEiLCJleHAiOjE2MDgxMjczOTIsImlhdCI6MTYwODA0MDk5MjI1NywianRpIjoiYjc3YjM0ODEtNmFhMy00YTkwLWFmMjctZWZlNWVhMWMyZWM4IiwiZGlkIjoicnRlLXByZC1wcmQtdHJ0IiwidW5tIjoiYW5vbnltb3VzX25ncnBfcGxheWVyQHJ0ZS5pZSIsImN0eCI6IntcInVzZXJOYW1lXCI6XCJhbm9ueW1vdXNfbmdycF9wbGF5ZXJAcnRlLmllXCJ9XG4iLCJvaWQiOm51bGx9.ityBtsqwO4NkmUcQlzEPv2Ji3QDieLeN53R5LASOsewskirUDZq3hl_KVZKoZirLxjF3q_iJDcQKL7Pr-pDJ6s2uFTK6kGGfa5dYfGGKvBorhT2eIa4ba9YbcMT9qE31_lWgF2Bqztqf3SC7Z8zGskaSm7Ik8OjW25IXpKrtZTDnVEz_xENTXbyscYVchm6-ZaHDhK-1vZiQmjXHOI7ShlKjqt3mc-3LxoTLXQ6BdawTNudMeiopNsQye1LtvY-BHGYWufboWcffF4ONVaF9aX3oLYRinm2qm143aYuovmjbwvuHLBamWS40javamxi55n47-D1Knl8mCbTFKLk1RA',
+                        releasePid: 'ybklWbwJeJh_',
+                        accountId: 'http://access.auth.theplatform.com/data/Account/2700894001'
+                    }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>

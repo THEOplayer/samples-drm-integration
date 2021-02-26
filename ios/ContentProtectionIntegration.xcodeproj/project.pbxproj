@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76A081952579654000FB9B73 /* ComcastDRMIntigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A081942579654000FB9B73 /* ComcastDRMIntigration.swift */; };
 		D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */; };
 		D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */; };
 		D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76A081942579654000FB9B73 /* ComcastDRMIntigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComcastDRMIntigration.swift; sourceTree = "<group>"; };
 		D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VuDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UplynkDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDRMIntegration.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */,
 				D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */,
 				D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */,
+				76A081942579654000FB9B73 /* ComcastDRMIntigration.swift */,
 			);
 			path = integration;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */,
+				76A081952579654000FB9B73 /* ComcastDRMIntigration.swift in Sources */,
 				E279FE3E25139E4700EC0EFA /* ViewController.swift in Sources */,
 				D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */,
 				E279FE3A25139E4700EC0EFA /* AppDelegate.swift in Sources */,
@@ -332,7 +336,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8YAB8ZY55Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -342,8 +348,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.theoplayer.ContentProtectionIntegration;
+				PRODUCT_BUNDLE_IDENTIFIER = theoplayer.ContentProtectionIntegration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.*";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -353,7 +360,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8YAB8ZY55Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -363,8 +372,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.theoplayer.ContentProtectionIntegration;
+				PRODUCT_BUNDLE_IDENTIFIER = theoplayer.ContentProtectionIntegration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.*";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
