@@ -15,4 +15,24 @@ export interface IrdetoControlConfiguration extends DRMConfiguration {
      */
     integration: IrdetoControlIntegrationID;
 
+    integrationParameters?: {
+        /**
+         * The Irdeto Control Content ID.
+         *
+         * <br/> - This Content ID will be used for the license request.
+         */
+        contentId?: string;
+        /**
+         * The Irdeto Control Key ID.
+         *
+         * <br/> - This Key ID will be used for the license request.
+         */
+        keyId?: string;
+        /**
+         * The Irdeto Control Application ID.
+         *
+         * <br/> - This Key ID will be used for the certificate request.
+         */
+        applicationId?: string;
+    }
 }
