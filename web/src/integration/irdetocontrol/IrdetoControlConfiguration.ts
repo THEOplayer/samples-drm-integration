@@ -31,7 +31,7 @@ export interface IrdetoControlConfiguration extends DRMConfiguration {
         /**
          * The Irdeto Control Application ID.
          *
-         * <br/> - This Key ID will be used for the certificate request.
+         * <br/> - This Application ID will be used for the certificate request.
          */
         applicationId?: string;
     }
