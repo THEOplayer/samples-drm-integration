@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Irdeto Control PlayReady Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    const streamSrc = '<stream>.mpd';
+    const contentId = '<contentId>';
+    player.source = {
+        sources: [
+            {
+                src: streamSrc,
+                type: "application/dash+xml",
+                contentProtection: {
+                    playready: {
+                        licenseAcquisitionURL: '<licenseAcquisitionURL>?contentId='+contentId,
+                        // headers: {
+                        //     "Authorization": "Bearer <token>" // when using JWT
+                        // }
+                    },
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>

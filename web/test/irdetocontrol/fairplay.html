@@ -32,10 +32,14 @@
         sources: [
             {
                 src: streamSrc,
+                type: 'application/x-mpegurl',
                 contentProtection: {
                     fairplay: {
                         certificateURL: '<certificateURL>?applicationId='+applicationId,
-                        licenseAcquisitionURL: '<licenseAcquisitionURL>?contentId='+contentId+'&keyId='+keyId
+                        licenseAcquisitionURL: '<licenseAcquisitionURL>?contentId='+contentId+'&keyId='+keyId,
+                        // headers: {
+                        //     "Authorization": "Bearer <token>" // when using JWT
+                        // }
                     },
                     preferredKeySystems: ['fairplay', 'widevine', 'playready'],
                     integration: 'irdetocontrol'
