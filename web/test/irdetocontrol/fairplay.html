@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Irdeto Control FairPlay Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'irdetocontrol',
+        'fairplay',
+        new ContentProtectionIntegrations.IrdetoControlFairplayContentProtectionIntegrationFactory()
+    );
+
+    const streamSrc = '<stream>.m3u8';
+    const applicationId = '<applicationId>';
+    const contentId = '<contentId>';
+    const keyId = '<keyId>';
+    player.source = {
+        sources: [
+            {
+                src: streamSrc,
+                type: 'application/x-mpegurl',
+                contentProtection: {
+                    fairplay: {
+                        certificateURL: '<certificateURL>?applicationId='+applicationId,
+                        licenseAcquisitionURL: '<licenseAcquisitionURL>?contentId='+contentId+'&keyId='+keyId,
+                        // headers: {
+                        //     "Authorization": "Bearer <token>" // when using JWT
+                        // }
+                    },
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'irdetocontrol'
+                    // integrationParameters: { // you can pass the key-value parameters here instead of directly through the certificate and license URL
+                    //     contentId: contentId,
+                    //     keyId: keyId,
+                    //     applicationId: applicationId
+                    // }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>
