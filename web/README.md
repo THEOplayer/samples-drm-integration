@@ -175,6 +175,8 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 - EZDRM (only for Fairplay, as Widevine and PlayReady can use the default implementation) 
 - Microsoft Azure DRM
 - Axinom DRM
+- Irdeto Control
+- Nagra DRM
 
 ### Testing an integration
 

@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>THEOplayer Web SDK Nagra Widevine</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="column">
+        <div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+    </div>
+    <div class="column">
+        <p>Enter valid data below, and hit play.</p>
+        <label>Stream URL:</label>
+        <input
+                type="text"
+                id="stream-url"
+                value=""
+        />
+        <label>License URL:</label>
+        <input
+                type="text"
+                id="license-url"
+                value=""
+        />
+        <label>Token:</label>
+        <input
+                type="text"
+                id="token"
+                value=""
+        />
+        <button id="update">Play</button>
+    </div>
+</div>
+
+<script>
+
+    const defaultIntegration = true;
+
+    const element = document.querySelector("#THEOplayer");
+    const player = new window.THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: "/THEOplayer/"
+    });
+
+    let configureStream = function (src, licenseAcquisitionURL, token) {
+        if (defaultIntegration == true) { // use default Widevine
+            player.source = {
+                sources: [
+                    {
+                        src: src,
+                        contentProtection: {
+                            widevine: {
+                                licenseAcquisitionURL: licenseAcquisitionURL,
+                                headers: {
+                                    "nv-authorizations": token,
+                                    // "X-AxDRM-Message": token,
+                                    // "Content-Type": "application/octet-stream"
+                                }
+                            },
+                            preferredKeySystems: ['widevine', 'playready', 'fairplay']
+                        }
+                    }
+                ]
+            };
+        } else { // use connector
+            const contentProtectionIdentifier = "nagra";
+            window.THEOplayer.registerContentProtectionIntegration(
+                contentProtectionIdentifier,
+                "widevine",
+                new ContentProtectionIntegrations.NagraDrmWidevineContentProtectionIntegrationFactory()
+            );
+            player.source = {
+                sources: [
+                    {
+                        src: src,
+                        contentProtection: {
+                            integration: "nagra",
+                            widevine: {
+                                licenseAcquisitionURL: licenseAcquisitionURL
+                            },
+                            integrationParameters: {
+                                token: token
+                            },
+                            preferredKeySystems: ['widevine', 'playready', 'fairplay'],
+                        }
+                    }
+                ]
+            };
+        }
+
+
+    };
+
+    let configureStreamFromForm = function () {
+        if (document) {
+            const streamUrl = document.querySelector("#stream-url").value;
+            const licenseUrl = document.querySelector("#license-url").value;
+            const token = document.querySelector("#token").value;
+            configureStream(streamUrl, licenseUrl, token);
+        }
+    };
+    let initUpdateListener = function () {
+        const playButton = document.querySelector("#update");
+        playButton.addEventListener("click", function (e) {
+            configureStreamFromForm();
+            player.play();
+        });
+    };
+    initUpdateListener();
+
+    configureStreamFromForm();
+
+</script>
+</body>
+</html>
