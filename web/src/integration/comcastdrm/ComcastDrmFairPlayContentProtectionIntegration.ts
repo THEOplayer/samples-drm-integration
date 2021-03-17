@@ -28,10 +28,6 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
         }
         const { token, accountId, releasePid } = this.contentProtectionConfiguration.integrationParameters;
         let spcMessage = utils.base64.encode(new Uint8Array(request.body!));
-        console.log("request.body", "new Uint8Array(request.body!)", "spcMessage");
-        console.log(typeof request.body, typeof new Uint8Array(request.body!), typeof spcMessage);
-        console.log(request.body, new Uint8Array(request.body!), spcMessage);
-        // console.log(spcMessage, spcMessage);
         let body = {
             "getFairplayLicense": {
                 "releasePid": releasePid,
@@ -40,9 +36,6 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
         };
 
         let newBody = new TextEncoder().encode(JSON.stringify(body));
-        console.log("body", "JSON.stringify(body)", "newBody");
-        console.log(typeof body, typeof JSON.stringify(body), typeof newBody);
-        console.log(body, JSON.stringify(body), newBody);
         return {
             ...request,
             url: request.url + `&token=${token}&account=${accountId}&form=json`,
@@ -63,7 +56,6 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
     extractFairplayContentId(skdUrl: string): string {
         const modifiedContentId = skdUrl.replace('FairPlay', this.contentProtectionConfiguration.integrationParameters.releasePid);
         this.contentId = extractContentId(modifiedContentId);
-        console.log(this.contentId);
         return this.contentId;
     }
 }

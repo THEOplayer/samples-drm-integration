@@ -1,12 +1,12 @@
 import { DRMConfiguration } from 'THEOplayer';
 
 /**
- * The identifier of the Azure Media Services integration.
+ * The identifier of the Comcast DRM integration.
  */
 export type ComcastIntegrationID = 'comcast';
 
 /**
- * Describes the configuration of the Azure Media Services DRM integration.
+ * Describes the configuration of the Comcast DRM integration.
  */
 export interface ComcastDrmConfiguration extends DRMConfiguration {
 
