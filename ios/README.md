@@ -120,6 +120,7 @@ Finally, build and run the app on an iOS device.
 - Vualto VuDRM
 - Microsoft Azure DRM
 - Verizon Uplynk DRM
+- EZ DRM
 
 ### Testing an integration
 
