@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm PlayReady Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    const src = '<stream.mpd>';
+    const licenseAcquisitionURL = 'https://playready.entitlement.theplatform.eu/playready/rightsmanager.asmx';
+    const auth = '<token>';
+    const account = 'http://access.auth.theplatform.com/data/Account/<ID>';
+    const releasePid = '<releasePid>';
+    const schema = '1.0';
+    player.source = {
+        "sources": [
+            {
+                "src": src,
+                "type": "application/dash+xml",
+                "contentProtection": {
+                    "playready": {
+                        "licenseAcquisitionURL": licenseAcquisitionURL,
+                        "queryParameters": {
+                            "auth": auth,
+                            "account": account,
+                            "releasePid": releasePid,
+                            "schema": schema
+                        }
+                    }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>
