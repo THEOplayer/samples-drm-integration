@@ -20,6 +20,12 @@ import { AxinomDrmFairplayContentProtectionIntegrationFactory } from
         './integration/axinomdrm/AxinomDrmFairplayContentProtectionIntegrationFactory';
 import { IrdetoControlFairplayContentProtectionIntegrationFactory} from
         './integration/irdetocontrol/IrdetoControlFairplayContentProtectionIntegrationFactory';
+import { NagraDrmWidevineContentProtectionIntegrationFactory } from
+        './integration/nagradrm/NagraDrmWidevineContentProtectionIntegrationFactory';
+import { NagraDrmPlayReadyContentProtectionIntegrationFactory } from
+        './integration/nagradrm/NagraDrmPlayReadyContentProtectionIntegrationFactory';
+import { NagraDrmFairPlayContentProtectionIntegrationFactory } from
+        './integration/nagradrm/NagraDrmFairPlayContentProtectionIntegrationFactory';
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -32,5 +38,8 @@ export {
     AzureDrmWidevineContentProtectionIntegrationFactory,
     AzureDrmPlayReadyContentProtectionIntegrationFactory,
     AzureDrmFairplayContentProtectionIntegrationFactory,
-    IrdetoControlFairplayContentProtectionIntegrationFactory
+    IrdetoControlFairplayContentProtectionIntegrationFactory,
+    NagraDrmWidevineContentProtectionIntegrationFactory,
+    NagraDrmPlayReadyContentProtectionIntegrationFactory,
+    NagraDrmFairPlayContentProtectionIntegrationFactory
 };
