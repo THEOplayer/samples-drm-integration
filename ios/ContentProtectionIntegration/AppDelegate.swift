@@ -19,13 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         THEOplayer.registerContentProtectionIntegration(integrationId: UplynkDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: UplynkDRMIntegrationFactory())
         
         THEOplayer.registerContentProtectionIntegration(integrationId: AzureDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: AzureDRMIntegrationFactory())
-        
-<<<<<<< HEAD
-        THEOplayer.registerContentProtectionIntegration(integrationId: ComcastDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: ComcastDRMIntegrationFactory())
-        
-=======
+
         THEOplayer.registerContentProtectionIntegration(integrationId: EzdrmDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: EzdrmDRMIntegrationFactory())
->>>>>>> master
         return true
     }
 
