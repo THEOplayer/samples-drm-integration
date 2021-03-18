@@ -182,6 +182,6 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 
 - Include a THEOplayer build in the root folder under `THEOplayer/`. It should contain the THEOplayer javascript
 library `THEOplayer.js`, the declaration file `THEOplayer.d.ts` with all exported TypeScript types, and `ui.css`.
-- Run `npm install && npm build` in the root folder to create the integrations library `bundle.js` under `dist/`.
+- Run `npm install && npm run build` in the root folder to create the integrations library `bundle.js` under `dist/`.
 - Start http-server in the root folder by running `npm run server`.
 - Go to `localhost:8080/test/[integration you want to test]`.

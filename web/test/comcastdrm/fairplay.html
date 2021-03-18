@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm FairPlay Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'comcast',
+        'fairplay',
+        new ContentProtectionIntegrations.ComcastDrmFairPlayContentProtectionIntegrationFactory()
+    );
+
+    const src = '<stream.m3u8>';
+    const licenseAcquisitionURL = 'https://fairplay.entitlement.eu.theplatform.com/fpls/web/FairPlay?schema=1.0&form=json';
+    const certificateURL = '<certificateURL>';
+    const token = '<token>';
+    const releasePid = '<releasePid>';
+    const accountId = 'http://access.auth.theplatform.com/data/Account/<ID>';
+    player.source = {
+        sources: [
+            {
+                src: src,
+                type: 'application/x-mpegurl',
+                contentProtection: {
+                    fairplay: {
+                        licenseAcquisitionURL: licenseAcquisitionURL,
+                        certificateURL: certificateURL
+                    },
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'comcast',
+                    integrationParameters: {
+                        token: token,
+                        releasePid: releasePid,
+                        accountId: accountId
+                    }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>

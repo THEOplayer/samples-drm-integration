@@ -18,6 +18,10 @@ import { AxinomDrmPlayReadyContentProtectionIntegrationFactory } from
         './integration/axinomdrm/AxinomDrmPlayReadyContentProtectionIntegrationFactory';
 import { AxinomDrmFairplayContentProtectionIntegrationFactory } from
         './integration/axinomdrm/AxinomDrmFairplayContentProtectionIntegrationFactory';
+import { ComcastDrmWidevineContentProtectionIntegrationFactory } from
+        './integration/comcastdrm/ComcastDrmWidevineContentProtectionIntegrationFactory';
+import { ComcastDrmFairPlayContentProtectionIntegrationFactory } from
+        './integration/comcastdrm/ComcastDrmFairPlayContentProtectionIntegrationFactory';
 import { IrdetoControlFairplayContentProtectionIntegrationFactory} from
         './integration/irdetocontrol/IrdetoControlFairplayContentProtectionIntegrationFactory';
 import { NagraDrmWidevineContentProtectionIntegrationFactory } from
@@ -38,6 +42,8 @@ export {
     AzureDrmWidevineContentProtectionIntegrationFactory,
     AzureDrmPlayReadyContentProtectionIntegrationFactory,
     AzureDrmFairplayContentProtectionIntegrationFactory,
+    ComcastDrmWidevineContentProtectionIntegrationFactory,
+    ComcastDrmFairPlayContentProtectionIntegrationFactory,
     IrdetoControlFairplayContentProtectionIntegrationFactory,
     NagraDrmWidevineContentProtectionIntegrationFactory,
     NagraDrmPlayReadyContentProtectionIntegrationFactory,

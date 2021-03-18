@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comcast drm Widevine Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'comcast',
+        'widevine',
+        new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
+    );
+
+    const src = '<stream.mpd>';
+    const licenseAcquisitionURL = 'https://widevine.entitlement.eu.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json';
+    const token = '<token>';
+    const releasePid = '<releasePid>';
+    const accountId = 'http://access.auth.theplatform.com/data/Account/<ID>';
+    player.source = {
+        sources: [
+            {
+                src: src,
+                type: 'application/dash+xml',
+                contentProtection: {
+                    widevine: {
+                        licenseAcquisitionURL: licenseAcquisitionURL,
+                    },
+                    preferredKeySystems: ['widevine', 'playready', 'fairplay'],
+                    integration: 'comcast',
+                    integrationParameters: {
+                        token: token,
+                        releasePid: releasePid,
+                        accountId: accountId
+                    }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>
