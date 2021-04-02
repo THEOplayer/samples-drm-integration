@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verimatrix Core DRM FairPlay Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        libraryLocation: '/THEOplayer/',
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'verimatrixcore',
+        'fairplay',
+        new ContentProtectionIntegrations.VerimatrixDrmFairPlayContentProtectionIntegrationFactory()
+    );
+
+    const src = '<src>';
+    const licenseAcquisitionURL = 'https://multidrm.vsaas.verimatrixcloud.net/fairplay';
+    const certificateURL = '<certificate URL>';
+    const token = '<token>';
+        
+    player.source = {
+        sources: [
+            {
+                src: src,
+                type: 'application/x-mpegurl',
+                contentProtection: {
+                    fairplay: {
+                        licenseAcquisitionURL: licenseAcquisitionURL,
+                        certificateURL: certificateURL
+                    },
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'verimatrixcore',
+                    integrationParameters: {
+                        token: token
+                    }
+                }
+            }
+        ]
+    }
+</script>
+</body>
+</html>

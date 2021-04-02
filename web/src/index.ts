@@ -30,7 +30,9 @@ import { NagraDrmPlayReadyContentProtectionIntegrationFactory } from
         './integration/nagradrm/NagraDrmPlayReadyContentProtectionIntegrationFactory';
 import { NagraDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/nagradrm/NagraDrmFairPlayContentProtectionIntegrationFactory';
-
+import { VerimatrixDrmFairPlayContentProtectionIntegrationFactory } from
+        './integration/verimatrixcoredrm/VerimatrixDrmFairPlayContentProtectionIntegrationFactory';
+        
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
     AxinomDrmPlayReadyContentProtectionIntegrationFactory,
@@ -47,5 +49,6 @@ export {
     IrdetoControlFairplayContentProtectionIntegrationFactory,
     NagraDrmWidevineContentProtectionIntegrationFactory,
     NagraDrmPlayReadyContentProtectionIntegrationFactory,
-    NagraDrmFairPlayContentProtectionIntegrationFactory
+    NagraDrmFairPlayContentProtectionIntegrationFactory,
+    VerimatrixDrmFairPlayContentProtectionIntegrationFactory
 };

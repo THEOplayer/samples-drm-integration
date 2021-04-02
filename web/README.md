@@ -177,6 +177,7 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 - Axinom DRM
 - Irdeto Control
 - Nagra DRM
+- Verimatrix MultiDRM Core DRM (Widevine and PlayReady use the default implementation, with the Audioration
 
 ### Testing an integration
 
