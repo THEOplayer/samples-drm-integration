@@ -177,6 +177,7 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 - Axinom DRM
 - Irdeto Control
 - Nagra DRM
+- BuyDRM KeyOS
 
 ### Testing an integration
 
