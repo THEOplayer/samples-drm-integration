@@ -30,6 +30,10 @@ import { NagraDrmPlayReadyContentProtectionIntegrationFactory } from
         './integration/nagradrm/NagraDrmPlayReadyContentProtectionIntegrationFactory';
 import { NagraDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/nagradrm/NagraDrmFairPlayContentProtectionIntegrationFactory';
+import { KeyOSDrmFairplayContentProtectionIntegrationFactory } from
+        './integration/keyos/KeyOSDrmFairplayContentProtectionIntegrationFactory';
+import { KeyOSDrmWidevineContentProtectionIntegrationFactory } from
+        "./integration/keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory";
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -47,5 +51,7 @@ export {
     IrdetoControlFairplayContentProtectionIntegrationFactory,
     NagraDrmWidevineContentProtectionIntegrationFactory,
     NagraDrmPlayReadyContentProtectionIntegrationFactory,
-    NagraDrmFairPlayContentProtectionIntegrationFactory
+    NagraDrmFairPlayContentProtectionIntegrationFactory,
+    KeyOSDrmWidevineContentProtectionIntegrationFactory,
+    KeyOSDrmFairplayContentProtectionIntegrationFactory
 };
