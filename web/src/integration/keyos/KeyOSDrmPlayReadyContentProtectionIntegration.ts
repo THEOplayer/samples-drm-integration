@@ -7,7 +7,7 @@ import {
 import { KeyOSDrmConfiguration } from './KeyOSDrmConfiguration';
 import { isKeyOSDrmDRMConfiguration } from "./KeyOSDrmUtils";
 
-export class KeyOSDrmWidevineContentProtectionIntegration implements ContentProtectionIntegration {
+export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentProtectionIntegration {
 
     private readonly contentProtectionConfiguration: KeyOSDrmConfiguration;
 
@@ -19,10 +19,10 @@ export class KeyOSDrmWidevineContentProtectionIntegration implements ContentProt
     }
 
     onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        if (!this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL) {
-            throw new Error('The Widevine KeyOS license url has not been correctly configured.');
+        if (!this.contentProtectionConfiguration.playready?.licenseAcquisitionURL) {
+            throw new Error('The PlayReady KeyOS license url has not been correctly configured.');
         }
-        request.url = this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL;
+        request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
             'customdata': this.contentProtectionConfiguration.integrationParameters.token

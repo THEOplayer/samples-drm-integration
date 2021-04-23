@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>KeyOS drm FairPlay Test</title>
+    <title>KeyOS drm PlayReady Test</title>
     <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
     <script src="/THEOplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -20,8 +20,8 @@
 
     THEOplayer.registerContentProtectionIntegration(
         'keyos',
-        'fairplay',
-        new ContentProtectionIntegrations.KeyOSDrmFairplayContentProtectionIntegrationFactory()
+        'playready',
+        new ContentProtectionIntegrations.KeyOSDrmPlayReadyContentProtectionIntegrationFactory()
     );
 
     player.source = {
@@ -29,19 +29,18 @@
             {
                 src: 'insert manifest url here',
                 contentProtection: {
-                    fairplay: {
-                        certificateURL: 'insert certificate url here',
-                        licenseAcquisitionURL: 'insert license url here'
-                    },
-                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
                     integration: 'keyos',
+                    playready: {
+                        licenseAcquisitionURL: 'insert license url here',
+                    },
+                    preferredKeySystems: ['playready', 'widevine', 'fairplay'],
                     integrationParameters: {
-                        token: 'insert token here',
+                        token: 'insert token here'
                     }
                 }
             }
         ]
-    }
+    };
 </script>
 </body>
 </html>

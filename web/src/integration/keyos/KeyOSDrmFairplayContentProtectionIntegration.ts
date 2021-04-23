@@ -6,8 +6,8 @@ import {
     CertificateRequest, utils, LicenseResponse
 } from 'THEOplayer';
 import { KeyOSDrmConfiguration } from './KeyOSDrmConfiguration';
-import { isKeyOSDrmDRMConfiguration } from "./KeyOSDrmUtils";
-import {extractContentId, unwrapCkc} from "../../utils/FairplayUtils";
+import { isKeyOSDrmDRMConfiguration, extractContentId } from "./KeyOSDrmUtils";
+
 
 export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
 
@@ -28,7 +28,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.certificateURL;
         request.headers = {
             ...request.headers,
-            'x-dt-auth-token': this.contentProtectionConfiguration.integrationParameters.token
+            'customdata': this.contentProtectionConfiguration.integrationParameters.token
         };
         return request;
     }
@@ -41,15 +41,20 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'x-dt-auth-token': this.contentProtectionConfiguration.integrationParameters.token
+            'customdata': this.contentProtectionConfiguration.integrationParameters.token
         };
-        const licenseParameters = `spc=${encodeURIComponent(utils.base64.encode(new Uint8Array(request.body!)))}&assetId=${encodeURIComponent(this.contentId!)}`;
+        const licenseParameters = `spc=${window.THEOplayer.utils.base64.encode(request.body!)}&assetId=${this.contentId}`;
         request.body = new TextEncoder().encode(licenseParameters);
         return request;
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        return unwrapCkc(response.body);
+        let bodyAsString = new TextDecoder('utf-8').decode(response.body)
+        let keyText = bodyAsString.trim()
+        if (keyText.substr(0, 5) === '<ckc>' && keyText.substr(-6) === '</ckc>') {
+            keyText = keyText.slice(5, -6)
+        }
+        return window.THEOplayer.utils.base64.decode(keyText)
     }
 
     extractFairplayContentId(skdUrl: string): string {

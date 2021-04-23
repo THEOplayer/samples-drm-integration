@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Azure drm Widevine Test</title>
+    <title>KeyOS drm Widevine Test</title>
     <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
     <script src="/THEOplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -19,7 +19,7 @@
     });
 
     THEOplayer.registerContentProtectionIntegration(
-        'buyDRM-keyos',
+        'keyos',
         'widevine',
         new ContentProtectionIntegrations.KeyOSDrmWidevineContentProtectionIntegrationFactory()
     );
@@ -29,7 +29,7 @@
             {
                 src: 'insert manifest url here',
                 contentProtection: {
-                    integration: 'azure',
+                    integration: 'keyos',
                     widevine: {
                         licenseAcquisitionURL: 'insert license url here'
                     },

@@ -34,6 +34,8 @@ import { KeyOSDrmFairplayContentProtectionIntegrationFactory } from
         './integration/keyos/KeyOSDrmFairplayContentProtectionIntegrationFactory';
 import { KeyOSDrmWidevineContentProtectionIntegrationFactory } from
         "./integration/keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory";
+import {KeyOSDrmPlayReadyContentProtectionIntegration} from
+        "./integration/keyos/KeyOSDrmPlayReadyContentProtectionIntegration";
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -53,5 +55,6 @@ export {
     NagraDrmPlayReadyContentProtectionIntegrationFactory,
     NagraDrmFairPlayContentProtectionIntegrationFactory,
     KeyOSDrmWidevineContentProtectionIntegrationFactory,
-    KeyOSDrmFairplayContentProtectionIntegrationFactory
+    KeyOSDrmFairplayContentProtectionIntegrationFactory,
+    KeyOSDrmPlayReadyContentProtectionIntegration
 };
