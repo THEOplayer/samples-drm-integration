@@ -19,7 +19,7 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
     }
 
     onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        const { token, accountId, releasePid } = this.contentProtectionConfiguration.integrationParameters;
+        const { token, account, releasePid } = this.contentProtectionConfiguration.integrationParameters;
         let widevineChallenge = utils.base64.encode(new Uint8Array(request.body!));
         let body = {
             "getWidevineLicense": {
@@ -29,7 +29,7 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
         };
         return {
             ...request,
-            url: request.url + `&token=${token}&account=${accountId}`,
+            url: request.url + `&token=${token}&account=${account}`,
             body: new TextEncoder().encode(JSON.stringify(body))
         };
     }
@@ -45,7 +45,7 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
         if (!this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL) {
             throw new Error('The Widevine AzureDRM license url has not been correctly configured.');
         }
-        const { token, accountId, releasePid } = this.contentProtectionConfiguration.integrationParameters;
+        const { token, account, releasePid } = this.contentProtectionConfiguration.integrationParameters;
         let widevineChallenge = utils.base64.encode(new Uint8Array(request.body!));
         let body = {
             "getWidevineLicense": {
@@ -55,7 +55,7 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
         };
         return {
             ...request,
-            url: request.url + `&token=${token}&account=${accountId}`,
+            url: request.url + `&token=${token}&account=${account}`,
             body: new TextEncoder().encode(JSON.stringify(body))
         };
     }
