@@ -25,11 +25,13 @@
     );
 
     const src = '<stream.m3u8>';
-    const licenseAcquisitionURL = 'https://fairplay.entitlement.eu.theplatform.com/fpls/web/FairPlay?schema=1.0&form=json';
+    const region = '.eu'; // might be optional. Omit or set to empty string "" if not needed.
+    const licenseAcquisitionURL = 'https://fairplay.entitlement' + region + '.theplatform.com/fpls/web/FairPlay?schema=1.0&form=json';
     const certificateURL = '<certificateURL>';
     const token = '<token>';
     const releasePid = '<releasePid>';
-    const accountId = 'http://access.auth.theplatform.com/data/Account/<ID>';
+    const accountId = '<accountId>'
+    const account = 'http://access.auth.theplatform.com/data/Account/' + accountId;
     player.source = {
         sources: [
             {
@@ -45,7 +47,7 @@
                     integrationParameters: {
                         token: token,
                         releasePid: releasePid,
-                        accountId: accountId
+                        account: account
                     }
                 }
             }

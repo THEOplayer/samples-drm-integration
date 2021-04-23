@@ -18,36 +18,76 @@
         libraryLocation: '/THEOplayer/',
     });
 
-    THEOplayer.registerContentProtectionIntegration(
-        'comcast',
-        'widevine',
-        new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
-    );
+    /*  Comcast writes at https://docs.theplatform.com/help/ent-getrawwidevinelicense-method:
+        The getRawWidevineLicense method retrieves licenses for content protected by Widevine Modular DRM.
+        The getRawWidevineLicense method returns the license without a JSON wrapper.
+        The getWidevineLicense method returns the license in a JSON wrapper.
+
+        This example uses the getRawWidevineLicense method when useRawWidevine == true.
+        The advantage of uses the getRawWidevineLicense method is that it allows you to use a
+        "default Widevine integration", and that you don't have to use a custom connector. This reduces
+        the overhead, and also makes it compatible with THEOplayer's default Chromecast Receiver App.
+        (Our default Chromecast Receiver App doesn't implement this custom Comcast connector.)
+
+        This example uses the getWidevineLicense method when useRawWidevine == false.
+        When you use this method, you need to use the custom Comcast DRM connector, as demonstrated
+        in the else-condition uses getWidevineLicense, because it requires custom handling of the JSON wrapper.
+    */
+    const useRawWidevine = true;
 
     const src = '<stream.mpd>';
-    const licenseAcquisitionURL = 'https://widevine.entitlement.eu.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json';
+    const region = ".eu"; // might be optional. Omit or set to empty string "" if not needed.
     const token = '<token>';
     const releasePid = '<releasePid>';
-    const accountId = 'http://access.auth.theplatform.com/data/Account/<ID>';
-    player.source = {
-        sources: [
-            {
-                src: src,
-                type: 'application/dash+xml',
-                contentProtection: {
-                    widevine: {
-                        licenseAcquisitionURL: licenseAcquisitionURL,
-                    },
-                    preferredKeySystems: ['widevine', 'playready', 'fairplay'],
-                    integration: 'comcast',
-                    integrationParameters: {
-                        token: token,
-                        releasePid: releasePid,
-                        accountId: accountId
+    const accountId = '<accountId>';
+    const account = 'http://access.auth.theplatform.com/data/Account/' + accountId;
+    if (useRawWidevine) {
+        const licenseAcquisitionURL = 'https://widevine.entitlement' + region +
+            '.theplatform.com/wv/web/ModularDrm/getRawWidevineLicense?schema=1.0' +
+            '&releasePid=' + releasePid + '&token=' + token + '&account=' + account;
+        player.source = {
+            "sources": [
+                {
+                    "src": src,
+                    "type": "application/dash+xml",
+                    "contentProtection": {
+                        "widevine": {
+                            // If the network response on the licenseAcquisitionURL is a 422 status code,
+                            // then your this URL is most likely malformed.
+                            // Reach out to Comcast for assistance.
+                            "licenseAcquisitionURL": licenseAcquisitionURL
+                        }
                     }
                 }
-            }
-        ]
+            ]
+        }
+    } else {
+        THEOplayer.registerContentProtectionIntegration(
+            'comcast',
+            'widevine',
+            new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
+        );
+        const licenseAcquisitionURL = 'https://widevine.entitlement' + region + '.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json';
+        player.source = {
+            sources: [
+                {
+                    src: src,
+                    type: 'application/dash+xml',
+                    contentProtection: {
+                        widevine: {
+                            licenseAcquisitionURL: licenseAcquisitionURL,
+                        },
+                        preferredKeySystems: ['widevine', 'playready', 'fairplay'],
+                        integration: 'comcast',
+                        integrationParameters: {
+                            token: token,
+                            releasePid: releasePid,
+                            account: account
+                        }
+                    }
+                }
+            ]
+        };
     }
 </script>
 </body>

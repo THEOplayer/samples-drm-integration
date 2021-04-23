@@ -31,9 +31,9 @@ export interface ComcastDrmConfiguration extends DRMConfiguration {
         /**
          * The Comcast Account ID.
          *
-         * <br/> - This accountId will be used for the license request.
+         * <br/> - This account will be used for the license request.
          */
-        accountId: string;
+        account: string;
 
         /**
          * The Comcast Token.

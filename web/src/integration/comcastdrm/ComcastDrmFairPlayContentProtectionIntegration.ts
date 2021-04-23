@@ -17,7 +17,7 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
     constructor(configuration: ComcastDrmConfiguration) {
         if (!isComcastDrmDRMConfiguration(configuration)) {
             throw new Error('The FairPlay ComcastDRM configuration is incorrect.' +
-                'Please verify that you have configured a token, releasePid and accountId.');
+                'Please verify that you have configured a token, releasePid and account.');
         }
         this.contentProtectionConfiguration = configuration;
     }
@@ -26,7 +26,7 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
         if (!this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL) {
             throw new Error('The FairPlay ComcastDRM license url has not been correctly configured.');
         }
-        const { token, accountId, releasePid } = this.contentProtectionConfiguration.integrationParameters;
+        const { token, account, releasePid } = this.contentProtectionConfiguration.integrationParameters;
         let spcMessage = utils.base64.encode(new Uint8Array(request.body!));
         let body = {
             "getFairplayLicense": {
@@ -38,7 +38,7 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
         let newBody = new TextEncoder().encode(JSON.stringify(body));
         return {
             ...request,
-            url: request.url + `&token=${token}&account=${accountId}&form=json`,
+            url: request.url + `&token=${token}&account=${account}&form=json`,
             headers: {
                 'Content-Type': 'application/json'
             },
