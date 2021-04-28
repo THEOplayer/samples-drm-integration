@@ -2,93 +2,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comcast drm Widevine Test</title>
-    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
-    <script src="/THEOplayer/THEOplayer.js"></script>
+    <title>Comcast DRM Widevine Test</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.theoplayer.com/dash/theoplayer/ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
 </head>
 <body>
-<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<div class="row">
+    <div class="column">
+        <h1>Comcast DRM Widevine</h1>
+        <p>Enter valid data below, and hit play. Only use this test player on Widevine-enabled platforms, such as Chrome.</p>
+        <label>Stream URL:</label>
+        <input
+                type="text"
+                id="streamUrl"
+                value="stream.mpd"
+        />
+        <label>Token:</label>
+        <input
+                type="text"
+                id="token"
+                value="eyJhbGci..."
+        />
+        <label>releasePid:</label>
+        <input
+                type="text"
+                id="releasePid"
+                value="qVT..."
+        />
+        <label>Account:</label>
+        <input
+                type="text"
+                id="account"
+                value="http://access.auth.theplatform.com/data/Account/1234567890"
+        />
+        <label>Region:</label>
+        <input
+                type="text"
+                id="region"
+                value=".eu"
+        />
+        <label>Raw Widevine:</label>
+        <input
+                type="checkbox"
+                checked="checked"
+                id="raw"
+                value="yes"
+        />
+        <button id="update">Play</button>
+    </div>
+    <div class="column">
+        <div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+    </div>
+</div>
 <script type="text/javascript">
     const element = document.querySelector('#THEOplayer');
     const player = new THEOplayer.Player(element, {
         ui: {
             fluid: true
         },
-        libraryLocation: '/THEOplayer/',
+        mutedAutoplay: true,
+        libraryLocation: '//cdn.theoplayer.com/dash/theoplayer/',
+        license: '' // enter your license from your SDK at portal.theoplayer.com
     });
 
-    /*  Comcast writes at https://docs.theplatform.com/help/ent-getrawwidevinelicense-method:
-        The getRawWidevineLicense method retrieves licenses for content protected by Widevine Modular DRM.
-        The getRawWidevineLicense method returns the license without a JSON wrapper.
-        The getWidevineLicense method returns the license in a JSON wrapper.
+    let configureStream = function (src, token, releasePid, account, region, useRawWidevine) {
+        /*  Comcast writes at https://docs.theplatform.com/help/ent-getrawwidevinelicense-method:
+            The getRawWidevineLicense method retrieves licenses for content protected by Widevine Modular DRM.
+            The getRawWidevineLicense method returns the license without a JSON wrapper.
+            The getWidevineLicense method returns the license in a JSON wrapper.
 
-        This example uses the getRawWidevineLicense method when useRawWidevine == true.
-        The advantage of uses the getRawWidevineLicense method is that it allows you to use a
-        "default Widevine integration", and that you don't have to use a custom connector. This reduces
-        the overhead, and also makes it compatible with THEOplayer's default Chromecast Receiver App.
-        (Our default Chromecast Receiver App doesn't implement this custom Comcast connector.)
+            This example uses the getRawWidevineLicense method when useRawWidevine == true.
+            The advantage of uses the getRawWidevineLicense method is that it allows you to use a
+            "default Widevine integration", and that you don't have to use a custom connector. This reduces
+            the overhead, and also makes it compatible with THEOplayer's default Chromecast Receiver App.
+            (Our default Chromecast Receiver App doesn't implement this custom Comcast connector.)
 
-        This example uses the getWidevineLicense method when useRawWidevine == false.
-        When you use this method, you need to use the custom Comcast DRM connector, as demonstrated
-        in the else-condition uses getWidevineLicense, because it requires custom handling of the JSON wrapper.
-    */
-    const useRawWidevine = true;
-
-    const src = '<stream.mpd>';
-    const region = ".eu"; // might be optional. Omit or set to empty string "" if not needed.
-    const token = '<token>';
-    const releasePid = '<releasePid>';
-    const accountId = '<accountId>';
-    const account = 'http://access.auth.theplatform.com/data/Account/' + accountId;
-    if (useRawWidevine) {
-        const licenseAcquisitionURL = 'https://widevine.entitlement' + region +
-            '.theplatform.com/wv/web/ModularDrm/getRawWidevineLicense?schema=1.0' +
-            '&releasePid=' + releasePid + '&token=' + token + '&account=' + account;
-        player.source = {
-            "sources": [
-                {
-                    "src": src,
-                    "type": "application/dash+xml",
-                    "contentProtection": {
-                        "widevine": {
-                            // If the network response on the licenseAcquisitionURL is a 422 status code,
-                            // then your this URL is most likely malformed.
-                            // Reach out to Comcast for assistance.
-                            "licenseAcquisitionURL": licenseAcquisitionURL
+            This example uses the getWidevineLicense method when useRawWidevine == false.
+            When you use this method, you need to use the custom Comcast DRM connector, as demonstrated
+            in the else-condition uses getWidevineLicense, because it requires custom handling of the JSON wrapper.
+        */
+        if (useRawWidevine) {
+            const licenseAcquisitionURL = 'https://widevine.entitlement' + region +
+                '.theplatform.com/wv/web/ModularDrm/getRawWidevineLicense?schema=1.0' +
+                '&releasePid=' + releasePid + '&token=' + token + '&account=' + account;
+            player.source = {
+                "sources": [
+                    {
+                        "src": src,
+                        "type": "application/dash+xml",
+                        "contentProtection": {
+                            "widevine": {
+                                // If the network response on the licenseAcquisitionURL is a 422 status code,
+                                // then your this URL is most likely malformed.
+                                // Reach out to Comcast for assistance.
+                                "licenseAcquisitionURL": licenseAcquisitionURL
+                            }
                         }
                     }
-                }
-            ]
+                ]
+            }
+        } else {
+            THEOplayer.registerContentProtectionIntegration(
+                'comcast',
+                'widevine',
+                new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
+            );
+            const licenseAcquisitionURL = 'https://widevine.entitlement' + region + '.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json';
+            player.source = {
+                sources: [
+                    {
+                        src: src,
+                        type: 'application/dash+xml',
+                        contentProtection: {
+                            widevine: {
+                                licenseAcquisitionURL: licenseAcquisitionURL,
+                            },
+                            preferredKeySystems: ['widevine', 'playready', 'fairplay'],
+                            integration: 'comcast',
+                            integrationParameters: {
+                                token: token,
+                                releasePid: releasePid,
+                                account: account
+                            }
+                        }
+                    }
+                ]
+            };
         }
-    } else {
-        THEOplayer.registerContentProtectionIntegration(
-            'comcast',
-            'widevine',
-            new ContentProtectionIntegrations.ComcastDrmWidevineContentProtectionIntegrationFactory()
-        );
-        const licenseAcquisitionURL = 'https://widevine.entitlement' + region + '.theplatform.com/wv/web/ModularDrm?schema=1.0&form=json';
-        player.source = {
-            sources: [
-                {
-                    src: src,
-                    type: 'application/dash+xml',
-                    contentProtection: {
-                        widevine: {
-                            licenseAcquisitionURL: licenseAcquisitionURL,
-                        },
-                        preferredKeySystems: ['widevine', 'playready', 'fairplay'],
-                        integration: 'comcast',
-                        integrationParameters: {
-                            token: token,
-                            releasePid: releasePid,
-                            account: account
-                        }
-                    }
-                }
-            ]
-        };
     }
+
+    let configureStreamFromForm = function () {
+        if (document) {
+            const src = document.querySelector("#streamUrl").value;
+            const token = document.querySelector("#token").value;
+            const releasePid = document.querySelector("#releasePid").value;
+            const account = document.querySelector("#account").value;
+            const region = document.querySelector("#region").value;
+            const useRawWidevine = document.querySelector("#raw").checked;
+            configureStream(src, token, releasePid, account, region, useRawWidevine);
+        }
+    };
+    let initUpdateListener = function () {
+        const playButton = document.querySelector("#update");
+        playButton.addEventListener("click", function () {
+            configureStreamFromForm();
+            player.play();
+        });
+    };
+    initUpdateListener();
+
+    configureStreamFromForm();
 </script>
 </body>
 </html>

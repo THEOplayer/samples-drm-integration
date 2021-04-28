@@ -2,46 +2,113 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comcast drm PlayReady Test</title>
-    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
-    <script src="/THEOplayer/THEOplayer.js"></script>
+    <title>Comcast DRM PlayReady Test</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.theoplayer.com/dash/theoplayer/ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
 </head>
 <body>
-<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<div class="row">
+    <div class="column">
+        <h1>Comcast DRM PlayReady</h1>
+        <p>Enter valid data below, and hit play. Only use this test player on PlayReady-enabled platforms, such as Edge.</p>
+        <label>Stream URL:</label>
+        <input
+                type="text"
+                id="streamUrl"
+                value="stream.mpd"
+        />
+        <label>Auth:</label>
+        <input
+                type="text"
+                id="auth"
+                value="eyJhbGci..."
+        />
+        <label>releasePid:</label>
+        <input
+                type="text"
+                id="releasePid"
+                value="qVT..."
+        />
+        <label>Account:</label>
+        <input
+                type="text"
+                id="account"
+                value="http://access.auth.theplatform.com/data/Account/1234567890"
+        />
+        <label>Schema:</label>
+        <input
+                type="text"
+                id="schema"
+                value="1.0"
+        />
+        <label>License URL:</label>
+        <input
+                type="text"
+                id="licenseUrl"
+                value="https://playready.entitlement.theplatform.eu/playready/rightsmanager.asmx"
+        />
+        <button id="update">Play</button>
+    </div>
+    <div class="column">
+        <div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+    </div>
+</div>
 <script type="text/javascript">
     const element = document.querySelector('#THEOplayer');
     const player = new THEOplayer.Player(element, {
         ui: {
             fluid: true
         },
-        libraryLocation: '/THEOplayer/',
+        mutedAutoplay: true,
+        libraryLocation: '//cdn.theoplayer.com/dash/theoplayer/',
+        license: '' // enter your license from your SDK at portal.theoplayer.com
     });
 
-    const src = '<stream.mpd>';
-    const licenseAcquisitionURL = 'https://playready.entitlement.theplatform.eu/playready/rightsmanager.asmx';
-    const auth = '<token>';
-    const account = 'http://access.auth.theplatform.com/data/Account/<ID>';
-    const releasePid = '<releasePid>';
-    const schema = '1.0';
-    player.source = {
-        "sources": [
-            {
-                "src": src,
-                "type": "application/dash+xml",
-                "contentProtection": {
-                    "playready": {
-                        "licenseAcquisitionURL": licenseAcquisitionURL,
-                        "queryParameters": {
-                            "auth": auth,
-                            "account": account,
-                            "releasePid": releasePid,
-                            "schema": schema
+    let configureStream = function (src, auth, releasePid, account, schema, licenseUrl) {
+        player.source = {
+            "sources": [
+                {
+                    "src": src,
+                    "type": "application/dash+xml",
+                    "contentProtection": {
+                        "playready": {
+                            "licenseAcquisitionURL": licenseUrl,
+                            "queryParameters": {
+                                "auth": auth,
+                                "account": account,
+                                "releasePid": releasePid,
+                                "schema": schema
+                            }
                         }
                     }
                 }
-            }
-        ]
+            ]
+        }
     }
+
+    let configureStreamFromForm = function () {
+        if (document) {
+            const src = document.querySelector("#streamUrl").value;
+            const auth = document.querySelector("#auth").value;
+            const releasePid = document.querySelector("#releasePid").value;
+            const account = document.querySelector("#account").value;
+            const schema = document.querySelector("#schema").value;
+            const licenseUrl = document.querySelector("#licenseUrl").value;
+            configureStream(src, auth, releasePid, account, schema, licenseUrl);
+        }
+    };
+    let initUpdateListener = function () {
+        const playButton = document.querySelector("#update");
+        playButton.addEventListener("click", function () {
+            configureStreamFromForm();
+            player.play();
+        });
+    };
+    initUpdateListener();
+
+    configureStreamFromForm();
 </script>
 </body>
 </html>

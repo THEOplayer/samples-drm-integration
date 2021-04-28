@@ -2,20 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comcast drm FairPlay Test</title>
-    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
-    <script src="/THEOplayer/THEOplayer.js"></script>
+    <title>Comcast DRM FairPlay Test</title>
+    <link rel="stylesheet" type="text/css" href="//cdn.theoplayer.com/dash/theoplayer/ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
 </head>
 <body>
-<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<div class="row">
+    <div class="column">
+        <h1>Comcast DRM FairPlay</h1>
+        <p>Enter valid data below, and hit play. Only use this test player on FairPlay-enabled platforms, such as Safari.</p>
+        <label>Stream URL:</label>
+        <input
+                type="text"
+                id="streamUrl"
+                value="stream.m3u8"
+        />
+        <label>Token:</label>
+        <input
+                type="text"
+                id="token"
+                value="eyJhbGci..."
+        />
+        <label>releasePid:</label>
+        <input
+                type="text"
+                id="releasePid"
+                value="qVT..."
+        />
+        <label>Account:</label>
+        <input
+                type="text"
+                id="account"
+                value="http://access.auth.theplatform.com/data/Account/1234567890"
+        />
+        <label>Region:</label>
+        <input
+                type="text"
+                id="region"
+                value=".eu"
+        />
+        <label>Certificate URL:</label>
+        <input
+                type="text"
+                id="certificateUrl"
+                value="https://..."
+        />
+        <button id="update">Play</button>
+    </div>
+    <div class="column">
+        <div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+    </div>
+</div>
 <script type="text/javascript">
     const element = document.querySelector('#THEOplayer');
     const player = new THEOplayer.Player(element, {
         ui: {
             fluid: true
         },
+        mutedAutoplay: true,
         libraryLocation: '/THEOplayer/',
+        license: '' // enter your license from your SDK at portal.theoplayer.com
     });
 
     THEOplayer.registerContentProtectionIntegration(
@@ -24,35 +72,52 @@
         new ContentProtectionIntegrations.ComcastDrmFairPlayContentProtectionIntegrationFactory()
     );
 
-    const src = '<stream.m3u8>';
-    const region = '.eu'; // might be optional. Omit or set to empty string "" if not needed.
-    const licenseAcquisitionURL = 'https://fairplay.entitlement' + region + '.theplatform.com/fpls/web/FairPlay?schema=1.0&form=json';
-    const certificateURL = '<certificateURL>';
-    const token = '<token>';
-    const releasePid = '<releasePid>';
-    const accountId = '<accountId>'
-    const account = 'http://access.auth.theplatform.com/data/Account/' + accountId;
-    player.source = {
-        sources: [
-            {
-                src: src,
-                type: 'application/x-mpegurl',
-                contentProtection: {
-                    fairplay: {
-                        licenseAcquisitionURL: licenseAcquisitionURL,
-                        certificateURL: certificateURL
-                    },
-                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
-                    integration: 'comcast',
-                    integrationParameters: {
-                        token: token,
-                        releasePid: releasePid,
-                        account: account
+    let configureStream = function (src, token, releasePid, account, region, certificateURL) {
+        const licenseAcquisitionURL = 'https://fairplay.entitlement' + region + '.theplatform.com/fpls/web/FairPlay?schema=1.0&form=json';
+        player.source = {
+            sources: [
+                {
+                    src: src,
+                    type: 'application/x-mpegurl',
+                    contentProtection: {
+                        fairplay: {
+                            licenseAcquisitionURL: licenseAcquisitionURL,
+                            certificateURL: certificateURL
+                        },
+                        preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                        integration: 'comcast',
+                        integrationParameters: {
+                            token: token,
+                            releasePid: releasePid,
+                            account: account
+                        }
                     }
                 }
-            }
-        ]
+            ]
+        }
     }
+
+    let configureStreamFromForm = function () {
+        if (document) {
+            const src = document.querySelector("#streamUrl").value;
+            const token = document.querySelector("#token").value;
+            const releasePid = document.querySelector("#releasePid").value;
+            const account = document.querySelector("#account").value;
+            const region = document.querySelector("#region").value;
+            const certificateUrl = document.querySelector("#certificateUrl").value;
+            configureStream(src, token, releasePid, account, region, certificateUrl);
+        }
+    };
+    let initUpdateListener = function () {
+        const playButton = document.querySelector("#update");
+        playButton.addEventListener("click", function () {
+            configureStreamFromForm();
+            player.play();
+        });
+    };
+    initUpdateListener();
+
+    configureStreamFromForm();
 </script>
 </body>
 </html>
