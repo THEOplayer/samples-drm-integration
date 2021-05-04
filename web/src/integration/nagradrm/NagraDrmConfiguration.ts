@@ -3,7 +3,7 @@ import { DRMConfiguration } from 'THEOplayer';
 /**
  * The identifier of the Nagra integration.
  */
-export type NagraIntegrationId = "axinom";
+export type NagraIntegrationId = "nagra";
 
 /**
  * Describes the configuration of the Axinom DRM integration.

@@ -14,7 +14,7 @@ export class NagraDrmPlayReadyContentProtectionIntegration
 
     constructor(configuration: NagraDrmConfiguration) {
         if (!isNagraDrmDRMConfiguration(configuration)) {
-            throw new Error("The Axinom token has not been correctly configured.");
+            throw new Error("The Nagra token has not been correctly configured.");
         }
         this.contentProtectionConfiguration = configuration;
     }
@@ -36,7 +36,7 @@ export class NagraDrmPlayReadyContentProtectionIntegration
     ): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
         if (!this.contentProtectionConfiguration.playready?.licenseAcquisitionURL) {
             throw new Error(
-                "The PlayReady Axinom license url has not been correctly configured."
+                "The PlayReady Nagra license url has not been correctly configured."
             );
         }
         request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL;
