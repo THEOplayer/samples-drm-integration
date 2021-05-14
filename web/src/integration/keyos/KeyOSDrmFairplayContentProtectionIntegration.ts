@@ -3,7 +3,7 @@ import {
     LicenseRequest,
     MaybeAsync,
     BufferSource,
-    CertificateRequest, utils, LicenseResponse
+    CertificateRequest, LicenseResponse
 } from 'THEOplayer';
 import { KeyOSDrmConfiguration } from './KeyOSDrmConfiguration';
 import { isKeyOSDrmDRMConfiguration, extractContentId } from "./KeyOSDrmUtils";
@@ -16,7 +16,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
 
     constructor(configuration: KeyOSDrmConfiguration) {
         if (!isKeyOSDrmDRMConfiguration(configuration)) {
-            throw new Error('The KeyOS token has not been correctly configured.');
+            throw new Error('The KeyOS customdata value has not been correctly configured.');
         }
         this.contentProtectionConfiguration = configuration;
     }
@@ -28,7 +28,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.certificateURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.token
+            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
         };
         return request;
     }
@@ -41,7 +41,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.token
+            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
         };
         const licenseParameters = `spc=${window.THEOplayer.utils.base64.encode(request.body!)}&assetId=${this.contentId}`;
         request.body = new TextEncoder().encode(licenseParameters);

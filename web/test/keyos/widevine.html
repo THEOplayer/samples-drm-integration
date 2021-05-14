@@ -19,7 +19,7 @@
     });
 
     THEOplayer.registerContentProtectionIntegration(
-        'keyos',
+        'keyos_buydrm',
         'widevine',
         new ContentProtectionIntegrations.KeyOSDrmWidevineContentProtectionIntegrationFactory()
     );
@@ -28,14 +28,15 @@
         sources: [
             {
                 src: 'insert manifest url here',
+                type: 'application/dash+xml',
                 contentProtection: {
-                    integration: 'keyos',
+                    integration: 'keyos_buydrm',
                     widevine: {
                         licenseAcquisitionURL: 'insert license url here'
                     },
                     preferredKeySystems: ['widevine', 'playready', 'fairplay'],
                     integrationParameters: {
-                        token: 'insert token here'
+                        customdata: 'insert customdata here'
                     }
                 }
             }
