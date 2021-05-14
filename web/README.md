@@ -178,6 +178,7 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 - Irdeto Control
 - Nagra DRM
 - BuyDRM KeyOS
+- Comcast DRM
 
 ### Testing an integration
 

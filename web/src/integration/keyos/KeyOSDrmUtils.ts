@@ -1,7 +1,7 @@
 import { KeyOSDrmConfiguration } from "./KeyOSDrmConfiguration";
 
 export function isKeyOSDrmDRMConfiguration(configuration: KeyOSDrmConfiguration): boolean {
-    return configuration.integrationParameters.token !== undefined;
+    return configuration.integrationParameters.customdata !== undefined;
 }
 
 export function extractContentId(skdUrl: string): string {
@@ -10,6 +10,5 @@ export function extractContentId(skdUrl: string): string {
     }
     var link = document.createElement('a');
     link.href = skdUrl;
-    console.log(link.hostname, skdUrl)
     return link.hostname;
 }

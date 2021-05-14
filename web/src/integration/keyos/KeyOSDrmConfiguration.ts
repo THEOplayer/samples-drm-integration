@@ -1,12 +1,12 @@
 import { DRMConfiguration } from 'THEOplayer';
 
 /**
- * The identifier of the KeyOS integration.
+ * The identifier of the KeyOS BuyDRM integration.
  */
-export type KeyOSIntegrationId = 'keyos';
+export type KeyOSIntegrationId = 'keyos_buydrm';
 
 /**
- * Describes the configuration of the Axinom DRM integration.
+ * Describes the configuration of the KeyOS BuyDRM DRM integration.
  */
 export interface KeyOSDrmConfiguration extends DRMConfiguration {
 
@@ -21,10 +21,10 @@ export interface KeyOSDrmConfiguration extends DRMConfiguration {
      */
     integrationParameters: {
         /**
-         * The KeyOS Authorization Token.
+         * The KeyOS BuyDRM Authorization Token.
          *
          * <br/> - Token that will be added to the headers of the license request.
          */
-        token: string;
+        customdata: string;
     }
 }

@@ -13,7 +13,7 @@ export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentPro
 
     constructor(configuration: KeyOSDrmConfiguration) {
         if (!isKeyOSDrmDRMConfiguration(configuration)) {
-            throw new Error('The KeyOS token has not been correctly configured.');
+            throw new Error('The KeyOS customdata value has not been correctly configured.');
         }
         this.contentProtectionConfiguration = configuration;
     }
@@ -25,7 +25,7 @@ export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentPro
         request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.token
+            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
         };
         return request;
     }
