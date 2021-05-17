@@ -179,6 +179,7 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 - Nagra DRM
 - BuyDRM KeyOS
 - Comcast DRM
+- Verimatrix MultiDRM Core DRM 
 
 ### Testing an integration
 
