@@ -36,6 +36,8 @@ import { KeyOSDrmWidevineContentProtectionIntegrationFactory } from
         "./integration/keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory";
 import {KeyOSDrmPlayReadyContentProtectionIntegrationFactory} from
         "./integration/keyos/keyOSDrmPlayReadyContentProtectionIntegrationFactory";
+import { VerimatrixDrmFairPlayContentProtectionIntegrationFactory } from
+        './integration/verimatrixcoredrm/VerimatrixDrmFairPlayContentProtectionIntegrationFactory';
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -56,5 +58,6 @@ export {
     NagraDrmFairPlayContentProtectionIntegrationFactory,
     KeyOSDrmWidevineContentProtectionIntegrationFactory,
     KeyOSDrmFairplayContentProtectionIntegrationFactory,
-    KeyOSDrmPlayReadyContentProtectionIntegrationFactory
+    KeyOSDrmPlayReadyContentProtectionIntegrationFactory,
+    VerimatrixDrmFairPlayContentProtectionIntegrationFactory
 };
