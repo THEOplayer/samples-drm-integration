@@ -7,6 +7,7 @@ import com.theoplayer.android.api.contentprotection.KeySystemId;
 import com.theoplayer.android.api.source.SourceDescription;
 import com.theoplayer.android.api.source.drm.DRMConfiguration;
 import com.theoplayer.contentprotectionintegration.integration.azuredrm.AzureWidevineContentProtectionIntegrationFactory;
+import com.theoplayer.contentprotectionintegration.integration.keyos.KeyOsWidevineContentProtectionIntegrationFactory;
 import com.theoplayer.contentprotectionintegration.integration.vudrm.VudrmWidevineContentProtectionIntegrationFactory;
 
 import java.util.HashMap;
@@ -92,6 +93,25 @@ public class SourceManager {
                         "<insert_vudrm_license_url_here>",
                         new HashMap<String, Object>() {{
                             put("token", "<insert_token_here>");
+                        }}
+                )
+        );
+
+        // BuyDRM KeyOS Widevine content protect integration
+        String KEYOS_ID = "buydrm-keyos";
+        THEOplayerGlobal.getSharedInstance(context).registerContentProtectionIntegration(
+                KEYOS_ID,
+                KeySystemId.WIDEVINE,
+                new KeyOsWidevineContentProtectionIntegrationFactory()
+        );
+        sources.put(
+                "BuyDRM KeyOs Widevine",
+                buildWidevineSourceDescription(
+                        KEYOS_ID,
+                        "<insert_manifest_url_here",
+                        "<insert_keyos_license_url_here>",
+                        new HashMap<String, Object>() {{
+                            put("customdata", "insert_customdata_here");
                         }}
                 )
         );
