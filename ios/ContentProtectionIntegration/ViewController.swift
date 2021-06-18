@@ -30,13 +30,13 @@ class ViewController: UIViewController {
     var sampleSource: SourceDescription {
         return SourceDescription(
             source: TypedSource(
-                src: "<insert_manifest_here>",
+                src: "your stream url",
                 type: "application/x-mpegurl",
                 drm: FairPlayDRMConfiguration(
-                    customIntegrationId: UplynkDRMIntegration.integrationID,
-                    licenseAcquisitionURL: "<insert_license_url>",
-                    certificateURL: "<insert_certificate_url>",
-                    integrationParameters: [:]
+                    customIntegrationId: KeyOsDRMIntegration.integrationID,
+                    licenseAcquisitionURL: "your license acquisition url",
+                    certificateURL: "your certificate url",
+                    integrationParameters: ["customdata":"your custom data"]
                 )
             )
         )

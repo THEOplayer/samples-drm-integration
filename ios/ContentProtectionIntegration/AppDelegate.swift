@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         THEOplayer.registerContentProtectionIntegration(integrationId: AzureDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: AzureDRMIntegrationFactory())
 
         THEOplayer.registerContentProtectionIntegration(integrationId: EzdrmDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: EzdrmDRMIntegrationFactory())
+        
+        THEOplayer.registerContentProtectionIntegration(integrationId: KeyOsDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: KeyOsDRMIntegrationFactory())
         return true
     }
 

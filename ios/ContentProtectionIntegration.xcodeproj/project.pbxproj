@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620E3EA0267CF4910049F3FF /* KeyOsDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */; };
+		620E3EA3267CF6590049F3FF /* THEOplayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */; };
+		620E3EA4267CF6590049F3FF /* THEOplayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		620E3EA7267CF6C70049F3FF /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA6267CF6C70049F3FF /* GoogleCast.framework */; };
+		620E3EA8267CF6C70049F3FF /* GoogleCast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA6267CF6C70049F3FF /* GoogleCast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		620E3EAA267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */; };
+		620E3EAB267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */; };
 		D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */; };
 		D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */; };
@@ -17,18 +24,18 @@
 		E279FE4125139E4700EC0EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE3F25139E4700EC0EFA /* Main.storyboard */; };
 		E279FE4325139E4900EC0EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4225139E4900EC0EFA /* Assets.xcassets */; };
 		E279FE4625139E4900EC0EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4425139E4900EC0EFA /* LaunchScreen.storyboard */; };
-		E279FE4F25139EBA00EC0EFA /* THEOplayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */; };
-		E279FE5025139EBA00EC0EFA /* THEOplayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E279FE5125139EBA00EC0EFA /* Embed Frameworks */ = {
+		620E3EA5267CF6590049F3FF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E279FE5025139EBA00EC0EFA /* THEOplayerSDK.framework in Embed Frameworks */,
+				620E3EAB267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Embed Frameworks */,
+				620E3EA8267CF6C70049F3FF /* GoogleCast.framework in Embed Frameworks */,
+				620E3EA4267CF6590049F3FF /* THEOplayerSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,6 +43,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOsDRMIntegration.swift; sourceTree = "<group>"; };
+		620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THEOplayerSDK.framework; path = ContentProtectionIntegration/THEOplayerSDK.framework; sourceTree = "<group>"; };
+		620E3EA6267CF6C70049F3FF /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = ContentProtectionIntegration/GoogleCast.framework; sourceTree = "<group>"; };
+		620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInteractiveMediaAds.framework; path = ContentProtectionIntegration/GoogleInteractiveMediaAds.framework; sourceTree = "<group>"; };
 		D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VuDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UplynkDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDRMIntegration.swift; sourceTree = "<group>"; };
@@ -56,7 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E279FE4F25139EBA00EC0EFA /* THEOplayerSDK.framework in Frameworks */,
+				620E3EAA267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Frameworks */,
+				620E3EA7267CF6C70049F3FF /* GoogleCast.framework in Frameworks */,
+				620E3EA3267CF6590049F3FF /* THEOplayerSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +111,9 @@
 		E279FE4D25139EBA00EC0EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */,
+				620E3EA6267CF6C70049F3FF /* GoogleCast.framework */,
+				620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */,
 				E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */,
 			);
 			name = Frameworks;
@@ -107,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */,
+				620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */,
 				D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */,
 				D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */,
 				D99BC03425A4679200AE24B0 /* EzdrmDRMIntegration.swift */,
@@ -124,7 +141,7 @@
 				E279FE3225139E4700EC0EFA /* Sources */,
 				E279FE3325139E4700EC0EFA /* Frameworks */,
 				E279FE3425139E4700EC0EFA /* Resources */,
-				E279FE5125139EBA00EC0EFA /* Embed Frameworks */,
+				620E3EA5267CF6590049F3FF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,6 +209,7 @@
 				D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */,
 				E279FE3A25139E4700EC0EFA /* AppDelegate.swift in Sources */,
 				D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */,
+				620E3EA0267CF4910049F3FF /* KeyOsDRMIntegration.swift in Sources */,
 				E279FE3C25139E4700EC0EFA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +360,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ContentProtectionIntegration",
 				);
 				INFOPLIST_FILE = ContentProtectionIntegration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -350,7 +369,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = theoplayer.ContentProtectionIntegration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.*";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.* 1613572623";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,6 +385,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ContentProtectionIntegration",
 				);
 				INFOPLIST_FILE = ContentProtectionIntegration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -374,7 +394,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = theoplayer.ContentProtectionIntegration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.*";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development theoplayer.* 1613572623";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
