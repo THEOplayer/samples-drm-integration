@@ -22,6 +22,8 @@ import { ComcastDrmWidevineContentProtectionIntegrationFactory } from
         './integration/comcastdrm/ComcastDrmWidevineContentProtectionIntegrationFactory';
 import { ComcastDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/comcastdrm/ComcastDrmFairPlayContentProtectionIntegrationFactory';
+import { CastLabsDrmFairPlayContentProtectionIntegrationFactory } from
+        './integration/castlabs/CastLabsDrmFairPlayContentProtectionIntegrationFactory';
 import { IrdetoControlFairplayContentProtectionIntegrationFactory} from
         './integration/irdetocontrol/IrdetoControlFairplayContentProtectionIntegrationFactory';
 import { NagraDrmWidevineContentProtectionIntegrationFactory } from
@@ -59,5 +61,6 @@ export {
     KeyOSDrmWidevineContentProtectionIntegrationFactory,
     KeyOSDrmFairplayContentProtectionIntegrationFactory,
     KeyOSDrmPlayReadyContentProtectionIntegrationFactory,
-    VerimatrixDrmFairPlayContentProtectionIntegrationFactory
+    VerimatrixDrmFairPlayContentProtectionIntegrationFactory,
+    CastLabsDrmFairPlayContentProtectionIntegrationFactory
 };
