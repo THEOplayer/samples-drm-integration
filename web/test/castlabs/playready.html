@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CastLabs PlayReady Test</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+</head>
+<body>
+  <p>This example uses the integration documented at <a href="https://docs.theoplayer.com/how-to-guides/04-drm/02-castlabs-drmtoday/00-introduction.md" target="_blank">https://docs.theoplayer.com/how-to-guides/04-drm/02-castlabs-drmtoday/00-introduction.md</a>.</p>
+  <div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+  <script type="text/javascript">
+      const element = document.querySelector('#THEOplayer');
+      const player = new THEOplayer.Player(element, {
+          ui: {
+              fluid: true
+          },
+          libraryLocation: '/THEOplayer/',
+      });
+      
+      const src = "";
+      const licenseAcquisitionURL = "";
+      const merchant = "";
+      const sessionId = "";
+      const userId = "";
+
+      player.source = {
+        sources: [{
+          "src": src,
+          "type": "application/dash+xml",
+          "contentProtection": {
+            "integration": "drmtoday",
+            "merchant": merchant,
+            "sessionId": sessionId,
+            "userId": userId,
+            "widevine": {
+              "licenseAcquisitionURL": licenseAcquisitionURL
+            },
+            "preferredKeySystems": ['playready', 'widevine', 'fairplay']
+          }
+        }]
+      };
+  </script>
+</body>
+</html>
