@@ -16,20 +16,17 @@ export class CastLabsDrmFairPlayContentProtectionIntegration implements ContentP
     private generatedToken: string;
 
     constructor(configuration: CastLabsDrmConfiguration) {
-        console.log("created");
         this.contentProtectionConfiguration = configuration;
-        this.generatedToken = btoa(
-            JSON.stringify({
-                userId: this.contentProtectionConfiguration.integrationParameters.userId,
-                sessionId: this.contentProtectionConfiguration.integrationParameters.sessionId,
-                merchant: this.contentProtectionConfiguration.integrationParameters.merchant
-            })
-        );
+        const jsonString = JSON.stringify({
+            userId: this.contentProtectionConfiguration.integrationParameters.userId,
+            sessionId: this.contentProtectionConfiguration.integrationParameters.sessionId,
+            merchant: this.contentProtectionConfiguration.integrationParameters.merchant
+        });
+        const base64String = btoa(jsonString);
+        this.generatedToken = base64String;
     }
 
     onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<CertificateRequest> | BufferSource> {
-        console.log("cert request");
-        
         request.headers = {
             ...request.headers,
             'dt-custom-data': this.generatedToken!
@@ -38,19 +35,14 @@ export class CastLabsDrmFairPlayContentProtectionIntegration implements ContentP
     }
 
     onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        console.log("license request");
-
         request.headers = {
             ...request.headers,
             'content-type': 'application/x-www-form-urlencoded',
             'dt-custom-data': this.generatedToken!,
         };
-
         const body = `spc=${encodeURIComponent(utils.base64.encode(new Uint8Array(request.body!)))}&${encodeURIComponent(this.contentId!)}`;
         request.body = new TextEncoder().encode(body);
-
         return request;
-
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
@@ -60,7 +52,6 @@ export class CastLabsDrmFairPlayContentProtectionIntegration implements ContentP
 
     extractFairplayContentId(skdUrl: string): string {
         this.contentId = skdUrl
-        console.log("contentId", this.contentId);
         return this.contentId;
     }
 }

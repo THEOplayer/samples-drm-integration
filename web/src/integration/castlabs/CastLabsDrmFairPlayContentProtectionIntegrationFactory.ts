@@ -7,7 +7,6 @@ import { CastLabsDrmFairPlayContentProtectionIntegration } from './CastLabsDrmFa
 
 export class CastLabsDrmFairPlayContentProtectionIntegrationFactory implements ContentProtectionIntegrationFactory {
     build(configuration: CastLabsDrmConfiguration): ContentProtectionIntegration {
-        console.log("do this");
         return new CastLabsDrmFairPlayContentProtectionIntegration(configuration);
     }
 }
