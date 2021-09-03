@@ -9,6 +9,7 @@ import { ComcastDrmConfiguration } from './ComcastDrmConfiguration';
 import { isComcastDrmDRMConfiguration } from './ComcastDrmUtils';
 import { extractContentId } from '../../utils/FairplayUtils';
 import {
+    fromBase64StringToArrayBuffer,
     fromBase64StringToString,
     fromObjectToUint8Array,
     fromUint8ArrayToBase64String,
@@ -54,7 +55,7 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
         const responseObject = fromUint8ArrayToObject(response.body);
-        return Uint8Array.from(fromBase64StringToString(responseObject.getFairplayLicenseResponse.ckcResponse), c => c.charCodeAt(0)).buffer;
+        return fromBase64StringToArrayBuffer(responseObject.getFairplayLicenseResponse.ckcResponse);
     }
 
     extractFairplayContentId(skdUrl: string): string {

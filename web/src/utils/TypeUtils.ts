@@ -20,6 +20,10 @@ export function fromBase64StringToString(str: string): string {
     return atob(str);
 }
 
+export function fromBase64StringToArrayBuffer(str: string): ArrayBuffer {
+    return Uint8Array.from(fromBase64StringToString(str), c => c.charCodeAt(0)).buffer;
+}
+
 export function fromUint8ArrayToNumberArray(array: Uint8Array): number[] {
     return Array.from(new Uint8Array(array));
 }

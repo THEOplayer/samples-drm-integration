@@ -8,7 +8,11 @@ import {
 } from 'THEOplayer';
 import { NagraDrmConfiguration } from "./NagraDrmConfiguration";
 import { isNagraDrmDRMConfiguration } from "./NagraDrmUtils";
-import { fromUint8ArrayToString } from "../../utils/TypeUtils";
+import {
+    fromBase64StringToArrayBuffer,
+    fromBase64StringToString,
+    fromUint8ArrayToObject,
+} from "../../utils/TypeUtils";
 
 export class NagraDrmFairPlayContentProtectionIntegration
     implements ContentProtectionIntegration {
@@ -61,19 +65,12 @@ export class NagraDrmFairPlayContentProtectionIntegration
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        var responseAsText = fromUint8ArrayToString(response.body);
-        var responseCkcMessage = JSON.parse(responseAsText)["CkcMessage"];
-        var raw = window.atob(responseCkcMessage);
-        var rawLength = raw.length;
-        var array = new Uint8Array(new ArrayBuffer(rawLength));
-        for (var i = 0; i < rawLength; i++) {
-            array[i] = raw.charCodeAt(i);
-        }
-        return array;
+        const responseObject = fromUint8ArrayToObject(response.body);
+        return fromBase64StringToArrayBuffer(responseObject.CkcMessage);
     }
 
     extractFairplayContentId(skdUrl: string): string {
-        this.contentId = window.atob(skdUrl.split("skd://")[1].split("?")[0]);
+        this.contentId = fromBase64StringToString(skdUrl.split("skd://")[1].split("?")[0]);
         return this.contentId;
     }
 }

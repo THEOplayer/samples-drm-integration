@@ -6,7 +6,13 @@ import {
     MaybeAsync,
 } from 'THEOplayer';
 import { VerimatrixDrmConfiguration } from './VerimatrixDrmConfiguration';
-import { fromObjectToUint8Array, fromUint8ArrayToBase64String, fromUint8ArrayToString } from '../../utils/TypeUtils';
+import {
+    fromBase64StringToArrayBuffer,
+    fromBase64StringToString,
+    fromObjectToUint8Array,
+    fromUint8ArrayToBase64String, fromUint8ArrayToObject,
+    fromUint8ArrayToString
+} from '../../utils/TypeUtils';
 
 export class VerimatrixDrmFairPlayContentProtectionIntegration implements ContentProtectionIntegration {
     private readonly contentProtectionConfiguration: VerimatrixDrmConfiguration;
@@ -38,9 +44,8 @@ export class VerimatrixDrmFairPlayContentProtectionIntegration implements Conten
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        const responseAsText = fromUint8ArrayToString(response.body);
-        const responseObject = JSON.parse(responseAsText);
-        return Uint8Array.from(atob(responseObject.ckc), c => c.charCodeAt(0)).buffer;
+        const responseObject = fromUint8ArrayToObject(response.body);
+        return fromBase64StringToArrayBuffer(responseObject.ckc);
     }
 
     extractFairplayContentId(skdUrl: string): string {
