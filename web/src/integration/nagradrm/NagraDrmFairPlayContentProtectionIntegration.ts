@@ -8,6 +8,7 @@ import {
 } from 'THEOplayer';
 import { NagraDrmConfiguration } from "./NagraDrmConfiguration";
 import { isNagraDrmDRMConfiguration } from "./NagraDrmUtils";
+import { fromUint8ArrayToString } from "../../utils/TypeUtils";
 
 export class NagraDrmFairPlayContentProtectionIntegration
     implements ContentProtectionIntegration {
@@ -60,7 +61,7 @@ export class NagraDrmFairPlayContentProtectionIntegration
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        var responseAsText = new TextDecoder().decode(response.body);
+        var responseAsText = fromUint8ArrayToString(response.body);
         var responseCkcMessage = JSON.parse(responseAsText)["CkcMessage"];
         var raw = window.atob(responseCkcMessage);
         var rawLength = raw.length;

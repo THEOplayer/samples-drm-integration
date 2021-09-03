@@ -4,9 +4,9 @@ import {
     LicenseRequest,
     LicenseResponse,
     MaybeAsync,
-    utils
 } from 'THEOplayer';
 import { VerimatrixDrmConfiguration } from './VerimatrixDrmConfiguration';
+import { fromObjectToUint8Array, fromUint8ArrayToBase64String, fromUint8ArrayToString } from '../../utils/TypeUtils';
 
 export class VerimatrixDrmFairPlayContentProtectionIntegration implements ContentProtectionIntegration {
     private readonly contentProtectionConfiguration: VerimatrixDrmConfiguration;
@@ -19,11 +19,11 @@ export class VerimatrixDrmFairPlayContentProtectionIntegration implements Conten
     }
 
     onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        let spcMessage = utils.base64.encode(new Uint8Array(request.body!));
+        let spcMessage = fromUint8ArrayToBase64String(request.body!);
         let body = {
             "spc": spcMessage
         };
-        let newBody = new TextEncoder().encode(JSON.stringify(body));
+        let newBody = fromObjectToUint8Array(body);
         const newRequest = {
             ...request,
             url: this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL ??
@@ -38,7 +38,7 @@ export class VerimatrixDrmFairPlayContentProtectionIntegration implements Conten
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        const responseAsText = new TextDecoder().decode(response.body);
+        const responseAsText = fromUint8ArrayToString(response.body);
         const responseObject = JSON.parse(responseAsText);
         return Uint8Array.from(atob(responseObject.ckc), c => c.charCodeAt(0)).buffer;
     }

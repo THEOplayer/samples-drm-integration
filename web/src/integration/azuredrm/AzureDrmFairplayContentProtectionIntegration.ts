@@ -5,11 +5,11 @@ import {
     LicenseRequest,
     LicenseResponse,
     MaybeAsync,
-    utils
 } from 'THEOplayer';
 import { AzureDrmConfiguration } from './AzureDrmConfiguration';
 import { isAzureDrmDRMConfiguration } from './AzureDrmUtils';
 import { extractContentId, unwrapCkc } from '../../utils/FairplayUtils';
+import { fromStringToUint8Array, fromUint8ArrayToBase64String } from "../../utils/TypeUtils";
 
 export class AzureDrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
     private readonly contentProtectionConfiguration: AzureDrmConfiguration;
@@ -46,8 +46,8 @@ export class AzureDrmFairplayContentProtectionIntegration implements ContentProt
         if (!this.contentId) {
             throw new Error('The FairPlay AzureDRM content ID has not been correctly configured.');
         }
-        const licenseParameters = `spc=${encodeURIComponent(utils.base64.encode(new Uint8Array(request.body!)))}&assetId=${encodeURIComponent(this.contentId)}`;
-        request.body = new TextEncoder().encode(licenseParameters);
+        const licenseParameters = `spc=${encodeURIComponent(fromUint8ArrayToBase64String(request.body!))}&assetId=${encodeURIComponent(this.contentId)}`;
+        request.body = fromStringToUint8Array(licenseParameters);
         return request;
     }
 

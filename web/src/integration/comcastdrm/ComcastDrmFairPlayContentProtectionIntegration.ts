@@ -4,11 +4,16 @@ import {
     LicenseRequest,
     LicenseResponse,
     MaybeAsync,
-    utils
 } from 'THEOplayer';
 import { ComcastDrmConfiguration } from './ComcastDrmConfiguration';
 import { isComcastDrmDRMConfiguration } from './ComcastDrmUtils';
 import { extractContentId } from '../../utils/FairplayUtils';
+import {
+    fromBase64StringToString,
+    fromObjectToUint8Array,
+    fromUint8ArrayToBase64String,
+    fromUint8ArrayToObject,
+} from "../../utils/TypeUtils";
 
 export class ComcastDrmFairPlayContentProtectionIntegration implements ContentProtectionIntegration {
     private readonly contentProtectionConfiguration: ComcastDrmConfiguration;
@@ -26,8 +31,8 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
         if (!this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL) {
             throw new Error('The FairPlay ComcastDRM license url has not been correctly configured.');
         }
-        const { token, account, releasePid } = this.contentProtectionConfiguration.integrationParameters;
-        let spcMessage = utils.base64.encode(new Uint8Array(request.body!));
+        const {token, account, releasePid} = this.contentProtectionConfiguration.integrationParameters;
+        let spcMessage = fromUint8ArrayToBase64String(request.body!);
         let body = {
             "getFairplayLicense": {
                 "releasePid": releasePid,
@@ -35,7 +40,7 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
             }
         };
 
-        let newBody = new TextEncoder().encode(JSON.stringify(body));
+        let newBody = fromObjectToUint8Array(body);
         return {
             ...request,
             url: request.url + `&token=${token}&account=${account}&form=json`,
@@ -48,9 +53,8 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        const responseAsText = new TextDecoder().decode(response.body);
-        const responseObject = JSON.parse(responseAsText);
-        return Uint8Array.from(atob(responseObject.getFairplayLicenseResponse.ckcResponse), c => c.charCodeAt(0)).buffer;
+        const responseObject = fromUint8ArrayToObject(response.body);
+        return Uint8Array.from(fromBase64StringToString(responseObject.getFairplayLicenseResponse.ckcResponse), c => c.charCodeAt(0)).buffer;
     }
 
     extractFairplayContentId(skdUrl: string): string {

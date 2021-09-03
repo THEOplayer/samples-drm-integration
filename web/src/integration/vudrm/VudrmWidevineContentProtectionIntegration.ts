@@ -6,6 +6,7 @@ import {
 } from 'THEOplayer';
 import { VudrmDrmConfiguration } from './VudrmDrmConfiguration';
 import { isVudrmDRMConfiguration } from './VudrmUtil';
+import { fromObjectToUint8Array, fromUint8ArrayToNumberArray } from '../../utils/TypeUtils';
 
 export class VudrmWidevineContentProtectionIntegration implements ContentProtectionIntegration {
 
@@ -20,11 +21,11 @@ export class VudrmWidevineContentProtectionIntegration implements ContentProtect
         this.contentProtectionConfiguration = configuration;
     }
 
-    private wrapRequestBody(body: Uint8Array) {
+    private wrapRequestBody(body: Uint8Array): Uint8Array {
         const token = this.contentProtectionConfiguration.integrationParameters.token;
-        const drmInfo = Array.from(new Uint8Array(body));
+        const drmInfo = fromUint8ArrayToNumberArray(body);
         const kid = this.contentProtectionConfiguration.integrationParameters.keyId;
-        return new TextEncoder().encode((JSON.stringify({ token, drm_info: drmInfo, kid })));
+        return fromObjectToUint8Array({token, drm_info: drmInfo, kid});
     }
 
     onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
