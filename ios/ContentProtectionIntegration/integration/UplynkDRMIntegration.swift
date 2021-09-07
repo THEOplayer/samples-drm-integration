@@ -45,7 +45,7 @@ class UplynkDRMIntegration: ContentProtectionIntegration {
         let laURL = skdUrl.replacingOccurrences(of: "skd://", with: "https://")
         request.url = laURL
         var dict = [String: String]()
-        if let spc = request.body?.base64EncodedString() {
+        if let spc = fromDataToBase64String(data: request.body) {
             dict.updateValue(spc, forKey: "spc")
         }
         do {
@@ -59,7 +59,7 @@ class UplynkDRMIntegration: ContentProtectionIntegration {
     func onLicenseResponse(response: LicenseResponse, callback: LicenseResponseCallback) {
         do {
             let dto = try JSONDecoder().decode(UplynkDRMLicenseResponse.self, from: response.body)
-            guard let responseBody = Data(base64Encoded: dto.ckc) else {
+            guard let responseBody = fromBase64StringToData(base64Encoded: dto.ckc) else {
                 fatalError("Could not Decode base64Encoded ckc")
             }
             response.body = responseBody
