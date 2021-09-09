@@ -1,4 +1,4 @@
-import { utils } from "THEOplayer";
+import { fromBase64StringToUint8Array, fromUint8ArrayToString } from "./TypeUtils";
 
 export function extractContentId(skdUrl: string): string {
     const questionMarkIndex = skdUrl.indexOf('?');
@@ -11,9 +11,9 @@ export function extractContentId(skdUrl: string): string {
 }
 
 export function unwrapCkc(data: Uint8Array): Uint8Array {
-    let license = new TextDecoder().decode(data).trim();
+    let license = fromUint8ArrayToString(data).trim();
     if ('<ckc>' === license.substr(0, 5) && '</ckc>' === license.substr(-6)) {
         license = license.slice(5, -6);
     }
-    return utils.base64.decode(license);
+    return fromBase64StringToUint8Array(license);
 }

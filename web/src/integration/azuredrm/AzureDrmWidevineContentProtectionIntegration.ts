@@ -12,7 +12,7 @@ export class AzureDrmWidevineContentProtectionIntegration implements ContentProt
     private readonly contentProtectionConfiguration: AzureDrmConfiguration;
 
     constructor(configuration: AzureDrmConfiguration) {
-        if(!isAzureDrmDRMConfiguration(configuration)){
+        if (!isAzureDrmDRMConfiguration(configuration)) {
             throw new Error('The Widevine AzureDRM token has not been correctly configured.');
         }
         this.contentProtectionConfiguration = configuration;

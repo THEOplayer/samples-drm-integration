@@ -8,6 +8,7 @@ import {
 import { VudrmDrmConfiguration } from './VudrmDrmConfiguration';
 import { isVudrmDRMConfiguration } from './VudrmUtil';
 import { extractContentId } from '../../utils/FairplayUtils';
+import { fromObjectToUint8Array, fromUint8ArrayToBase64String } from '../../utils/TypeUtils';
 
 export class VudrmFairplayContentProtectionIntegration implements ContentProtectionIntegration {
 
@@ -41,13 +42,13 @@ export class VudrmFairplayContentProtectionIntegration implements ContentProtect
         const licenseParameters = {
             token: this.contentProtectionConfiguration.integrationParameters.token,
             contentId: this.contentId,
-            payload: utils.base64.encode(new Uint8Array(request.body!))
+            payload: fromUint8ArrayToBase64String(request.body!)
         };
         request.headers = {
             'Content-Type': 'application/json',
             'x-vudrm-token': this.contentProtectionConfiguration.integrationParameters.token
         }
-        request.body = new TextEncoder().encode((JSON.stringify(licenseParameters)));
+        request.body = fromObjectToUint8Array(licenseParameters);
         return request;
     }
 

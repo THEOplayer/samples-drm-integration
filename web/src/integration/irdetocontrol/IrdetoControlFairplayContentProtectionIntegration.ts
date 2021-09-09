@@ -67,7 +67,7 @@ export class IrdetoControlFairplayContentProtectionIntegration implements Conten
         return skdUrl;
     }
 
-    hasQueryParameter(url : string, parameter: string) : Boolean {
+    hasQueryParameter(url: string, parameter: string): Boolean {
         const queryParameters = url.split("?");
         if (!queryParameters || !queryParameters[1]) {
             return false;
@@ -82,7 +82,7 @@ export class IrdetoControlFairplayContentProtectionIntegration implements Conten
         return false;
     }
 
-    appendQueryParameter(url: string, key: string, value: string | undefined) : string {
+    appendQueryParameter(url: string, key: string, value: string | undefined): string {
         const queryParameters = url.split("?");
         if (!queryParameters || !queryParameters[1]) {
             return (url + "?" + key + "=" + value);
