@@ -1,14 +1,12 @@
 package com.theoplayer.contentprotectionintegration.integration.vudrm;
 
 import com.theoplayer.android.api.contentprotection.CertificateRequestCallback;
-import com.theoplayer.android.api.contentprotection.CertificateResponseCallback;
 import com.theoplayer.android.api.contentprotection.ContentProtectionIntegration;
 import com.theoplayer.android.api.contentprotection.LicenseRequestCallback;
 import com.theoplayer.android.api.contentprotection.Request;
-import com.theoplayer.android.api.contentprotection.Response;
 import com.theoplayer.android.api.source.drm.DRMConfiguration;
+import com.theoplayer.contentprotectionintegration.TypeUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,12 +40,12 @@ public class VudrmWidevineContentProtectionIntegration extends ContentProtection
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("token", token);
-            jsonBody.put("drm_info", toUint8JsonArray(request.getBody()));
+            jsonBody.put("drm_info", TypeUtils.fromByteArrayToUint8JsonArray(request.getBody()));
             jsonBody.put("kid", kid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        request.setBody(jsonBody.toString().getBytes());
+        request.setBody(TypeUtils.fromJsonToByteArray(jsonBody));
         return request;
     }
 
@@ -65,13 +63,5 @@ public class VudrmWidevineContentProtectionIntegration extends ContentProtection
         } catch (Throwable error) {
             callback.error(error);
         }
-    }
-
-    private JSONArray toUint8JsonArray(final byte [] bytes) {
-        JSONArray jsonArray = new JSONArray();
-        for (byte aByte : bytes) {
-            jsonArray.put(aByte & 0xff);
-        }
-        return jsonArray;
     }
 }

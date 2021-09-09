@@ -25,7 +25,5 @@ public class KeyOsWidevineContentProtectionIntegration extends ContentProtection
                 contentProtectionConfiguration.getIntegrationParameters().get("customdata").toString()
         );
         callback.request(request);
-
     }
-
 }
