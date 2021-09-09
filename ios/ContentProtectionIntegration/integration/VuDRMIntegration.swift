@@ -44,7 +44,7 @@ class VuDRMIntegration: ContentProtectionIntegration {
         var dict = [String: String]()
         dict.updateValue(self.getTokenFromDrmConfiguration(), forKey: "token")
         dict.updateValue(contentID, forKey: "contentId")
-        if let payload = request.body?.base64EncodedString() {
+        if let payload = fromDataToBase64String(data: request.body) {
             dict.updateValue(payload, forKey: "payload")
         }
         do {

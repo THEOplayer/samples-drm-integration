@@ -44,9 +44,8 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
         
         request.headers.updateValue(self.getCustomdataFromDrmConfiguration(), forKey: "customdata")
 
-        if let body64 = request.body?.base64EncodedString() {
-            let body = "spc=\(body64)&assetId=\(contentId)"
-            request.body = body.data(using: .utf8)!
+        if let body64 = fromDataToBase64String(data: request.body) {
+            request.body = fromUtf8StringToData(str: "spc=\(body64)&assetId=\(contentId)")
             callback.request(request: request)
         } else {
             fatalError("RequestBody was nil.")
@@ -54,12 +53,12 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
     }
 
     func onLicenseResponse(response: LicenseResponse, callback: LicenseResponseCallback) {
-        guard var licenseBody = String(data: response.body, encoding: .utf8) else {
+        guard var licenseBody = fromDataToUtf8String(data: response.body) else {
             fatalError("Could not create a string from the reponseBody provided.")
         }
         licenseBody = licenseBody.replacingOccurrences(of: "<ckc>", with: "")
         licenseBody = licenseBody.replacingOccurrences(of: "</ckc>", with: "")
-        if let data = Data(base64Encoded: licenseBody) {
+        if let data = fromBase64StringToData(base64Encoded: licenseBody) {
             callback.respond(license: data)
         } else {
             fatalError("Could not create a Data Object from the responseBody provided.")

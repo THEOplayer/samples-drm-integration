@@ -24,6 +24,7 @@
 		E279FE4125139E4700EC0EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE3F25139E4700EC0EFA /* Main.storyboard */; };
 		E279FE4325139E4900EC0EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4225139E4900EC0EFA /* Assets.xcassets */; };
 		E279FE4625139E4900EC0EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4425139E4900EC0EFA /* LaunchScreen.storyboard */; };
+		E2B43C8C26E791480048696B /* TypeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B43C8B26E791470048696B /* TypeUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 		E279FE4525139E4900EC0EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E279FE4725139E4900EC0EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = THEOplayerSDK.framework; sourceTree = "<group>"; };
+		E2B43C8B26E791470048696B /* TypeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeUtils.swift; path = "../../../samples-drm-integration-comcast/ios/ContentProtectionIntegration/TypeUtils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				E279FE5225139F2000EC0EFA /* integration */,
+				E2B43C8B26E791470048696B /* TypeUtils.swift */,
 				E279FE3925139E4700EC0EFA /* AppDelegate.swift */,
 				E279FE3B25139E4700EC0EFA /* SceneDelegate.swift */,
 				E279FE3D25139E4700EC0EFA /* ViewController.swift */,
@@ -206,6 +209,7 @@
 				D99BC03525A4679200AE24B0 /* EzdrmDRMIntegration.swift in Sources */,
 				D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */,
 				E279FE3E25139E4700EC0EFA /* ViewController.swift in Sources */,
+				E2B43C8C26E791480048696B /* TypeUtils.swift in Sources */,
 				D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */,
 				E279FE3A25139E4700EC0EFA /* AppDelegate.swift in Sources */,
 				D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */,
