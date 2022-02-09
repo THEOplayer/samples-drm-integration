@@ -240,10 +240,10 @@ or needs to be transformed or unwrapped first in a way similar to the request bo
 
 ### Testing an integration
 
-- Add your iOS THEOplayerSDK framework into the [/ios]() folder.
-- Open the [project](/ios/ContentProtectionIntegration.xcodeproj) and 
- [add the framework as a dependency](https://docs.portal.theoplayer.com/getting-started/01-sdks/03-ios/00-getting-started.md#configure-theoplayer-sdk-framework) 
- to your project.
+- Ensure that your Podfile is point to an appropriate [THEOplayer iOS SDK](https://github.com/THEOplayer/theoplayer-sdk-ios).
+- Run `pod install --repo-update` in the `ios/` folder to install your Podfile.
+- Open the `.xcworkspace` file instead of the `.xcodeproj` file.
+- Enter a valid license key in `ViewController.swift` instead of `"YOUR_LICENSE_HERE"`.
 - Make sure to fill in the necessary fields `ViewController` for the content integration that will be tested, such as the manifest url and any integration parameters.
 - Attach an iOS device, and finally build and run the project.
 
