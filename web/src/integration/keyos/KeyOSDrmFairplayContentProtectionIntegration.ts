@@ -33,7 +33,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.certificateURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
+            'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization']
         };
         return request;
     }
@@ -46,7 +46,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
+            'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization']
         };
         const licenseParameters = `spc=${fromUint8ArrayToBase64String(request.body!)}&assetId=${this.contentId}`;
         request.body = fromStringToUint8Array(licenseParameters);
