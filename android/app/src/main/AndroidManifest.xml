@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="THEOPLAYER_LICENSE"
+            android:value="YOUR_LICENSE_HERE" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -269,9 +269,9 @@ The repository already contains a few integration examples that could be used as
 Make sure to apply the following steps before testing your custom integration. If a problem persists, please
 reach out to THEOplayer [customer support](https://www.theoplayer.com/contact).
 
-- Add your THEOplayer Android Archive (AAR) into the [/android/app/libs/]() folder and rename it to `theoplayer.aar`.
 - Depending on the features included in your THEOplayer build, include the necessary dependencies in `/android/app/build.gradle`.
 - Open the `/android` folder in [Android Studio](https://developer.android.com/studio) and build the project.
+- Ensure that a valid license key is entered in the `AndroidManifest.xml` instead of `"YOUR_LICENSE_HERE"`. More information is available at https://github.com/THEOplayer/theoplayer-sdk-android.
 - Make sure to fill in the necessary fields in `SourceManager` for the content integration that will be tested, such as the manifest url and any integration parameters.
 - Attach either a physical Android device or start an Android emulator, and run the project.
 
