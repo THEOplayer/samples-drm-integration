@@ -64,3 +64,5 @@ export {
     VerimatrixDrmFairPlayContentProtectionIntegrationFactory,
     CastLabsDrmFairPlayContentProtectionIntegrationFactory
 };
+
+export const THEOPLAYER_LICENSE = "YOUR_LICENSE_HERE";

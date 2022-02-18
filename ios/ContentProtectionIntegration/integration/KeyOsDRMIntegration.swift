@@ -27,7 +27,7 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
     }
 
     func onCertificateRequest(request: CertificateRequest, callback: CertificateRequestCallback) {
-        request.headers.updateValue(self.getCustomdataFromDrmConfiguration(), forKey: "customdata")
+        request.headers.updateValue(self.getXKeyosAuthorizationFromDrmConfiguration(), forKey: "x-keyos-authorization")
         callback.request(request: request)
 
     }
@@ -42,7 +42,7 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
             fatalError("contentID was nil.")
         }
         
-        request.headers.updateValue(self.getCustomdataFromDrmConfiguration(), forKey: "customdata")
+        request.headers.updateValue(self.getXKeyosAuthorizationFromDrmConfiguration(), forKey: "x-keyos-authorization")
 
         if let body64 = fromDataToBase64String(data: request.body) {
             request.body = fromUtf8StringToData(str: "spc=\(body64)&assetId=\(contentId)")
@@ -65,9 +65,9 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
         }
     }
     
-    private func getCustomdataFromDrmConfiguration() -> String {
-        guard let customdata = self.configuration.integrationParameters?["customdata"] as? String else {
-            fatalError("Could not find the customdata value in the integrationParameters.")
+    private func getXKeyosAuthorizationFromDrmConfiguration() -> String {
+        guard let customdata = self.configuration.integrationParameters?["x-keyos-authorization"] as? String else {
+            fatalError("Could not find the x-keyos-authorization value in the integrationParameters.")
         }
         return customdata
     }

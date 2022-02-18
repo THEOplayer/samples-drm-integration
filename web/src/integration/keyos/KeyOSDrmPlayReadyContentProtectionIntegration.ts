@@ -25,7 +25,7 @@ export class KeyOSDrmPlayReadyContentProtectionIntegration implements ContentPro
         request.url = this.contentProtectionConfiguration.playready?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
+            'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization']
         };
         return request;
     }

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.theoplayer.contentprotectionintegration"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         multiDexEnabled true
     }
@@ -16,6 +16,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation(name:'theoplayer', ext:'aar')
+    implementation 'com.theoplayer.theoplayer-sdk-android:basic-minapi21:+'
     implementation 'com.android.support:multidex:1.0.3'
 }

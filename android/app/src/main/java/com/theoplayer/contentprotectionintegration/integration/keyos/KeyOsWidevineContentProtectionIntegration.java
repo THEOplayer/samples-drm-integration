@@ -21,8 +21,8 @@ public class KeyOsWidevineContentProtectionIntegration extends ContentProtection
 
         request.setUrl(contentProtectionConfiguration.getWidevine().getLicenseAcquisitionURL());
         request.getHeaders().put(
-                "customdata",
-                contentProtectionConfiguration.getIntegrationParameters().get("customdata").toString()
+                "x-keyos-authorization",
+                contentProtectionConfiguration.getIntegrationParameters().get("x-keyos-authorization").toString()
         );
         callback.request(request);
     }

@@ -25,7 +25,7 @@ export class KeyOSDrmWidevineContentProtectionIntegration implements ContentProt
         request.url = this.contentProtectionConfiguration.widevine?.licenseAcquisitionURL;
         request.headers = {
             ...request.headers,
-            'customdata': this.contentProtectionConfiguration.integrationParameters.customdata
+            'x-keyos-authorization': this.contentProtectionConfiguration.integrationParameters['x-keyos-authorization']
         };
         return request;
     }

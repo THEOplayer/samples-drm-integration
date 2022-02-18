@@ -25,6 +25,6 @@ export interface KeyOSDrmConfiguration extends DRMConfiguration {
          *
          * <br/> - Token that will be added to the headers of the license request.
          */
-        customdata: string;
+        'x-keyos-authorization': string;
     }
 }

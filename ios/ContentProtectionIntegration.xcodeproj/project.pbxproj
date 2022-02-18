@@ -3,17 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		620E3EA0267CF4910049F3FF /* KeyOsDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */; };
-		620E3EA3267CF6590049F3FF /* THEOplayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */; };
-		620E3EA4267CF6590049F3FF /* THEOplayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		620E3EA7267CF6C70049F3FF /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA6267CF6C70049F3FF /* GoogleCast.framework */; };
-		620E3EA8267CF6C70049F3FF /* GoogleCast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA6267CF6C70049F3FF /* GoogleCast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		620E3EAA267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */; };
-		620E3EAB267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		765B351C27B44D520001270E /* TypeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765B351B27B44D520001270E /* TypeUtils.swift */; };
+		8FF28873064ABFF844CA8F8B /* Pods_ContentProtectionIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E0E5387344C04F3BAFF4A8 /* Pods_ContentProtectionIntegration.framework */; };
 		D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */; };
 		D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */; };
 		D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */; };
@@ -24,30 +20,13 @@
 		E279FE4125139E4700EC0EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE3F25139E4700EC0EFA /* Main.storyboard */; };
 		E279FE4325139E4900EC0EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4225139E4900EC0EFA /* Assets.xcassets */; };
 		E279FE4625139E4900EC0EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E279FE4425139E4900EC0EFA /* LaunchScreen.storyboard */; };
-		E2B43C8C26E791480048696B /* TypeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B43C8B26E791470048696B /* TypeUtils.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		620E3EA5267CF6590049F3FF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				620E3EAB267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Embed Frameworks */,
-				620E3EA8267CF6C70049F3FF /* GoogleCast.framework in Embed Frameworks */,
-				620E3EA4267CF6590049F3FF /* THEOplayerSDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOsDRMIntegration.swift; sourceTree = "<group>"; };
-		620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = THEOplayerSDK.framework; path = ContentProtectionIntegration/THEOplayerSDK.framework; sourceTree = "<group>"; };
-		620E3EA6267CF6C70049F3FF /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = ContentProtectionIntegration/GoogleCast.framework; sourceTree = "<group>"; };
-		620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInteractiveMediaAds.framework; path = ContentProtectionIntegration/GoogleInteractiveMediaAds.framework; sourceTree = "<group>"; };
+		765B351B27B44D520001270E /* TypeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeUtils.swift; sourceTree = "<group>"; };
+		9579374696DA3C9C1AC37A64 /* Pods-ContentProtectionIntegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentProtectionIntegration.debug.xcconfig"; path = "Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration.debug.xcconfig"; sourceTree = "<group>"; };
+		CD6ABAD3AD9CFA4F41C8F0E5 /* Pods-ContentProtectionIntegration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentProtectionIntegration.release.xcconfig"; path = "Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration.release.xcconfig"; sourceTree = "<group>"; };
 		D5F83297251CAE7400032D63 /* VuDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VuDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UplynkDRMIntegration.swift; sourceTree = "<group>"; };
 		D5F8329B251CB5C900032D63 /* AzureDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureDRMIntegration.swift; sourceTree = "<group>"; };
@@ -60,8 +39,7 @@
 		E279FE4225139E4900EC0EFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E279FE4525139E4900EC0EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E279FE4725139E4900EC0EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = THEOplayerSDK.framework; sourceTree = "<group>"; };
-		E2B43C8B26E791470048696B /* TypeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeUtils.swift; path = "../../../samples-drm-integration-comcast/ios/ContentProtectionIntegration/TypeUtils.swift"; sourceTree = "<group>"; };
+		E7E0E5387344C04F3BAFF4A8 /* Pods_ContentProtectionIntegration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContentProtectionIntegration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,21 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				620E3EAA267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework in Frameworks */,
-				620E3EA7267CF6C70049F3FF /* GoogleCast.framework in Frameworks */,
-				620E3EA3267CF6590049F3FF /* THEOplayerSDK.framework in Frameworks */,
+				8FF28873064ABFF844CA8F8B /* Pods_ContentProtectionIntegration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1247B51564027806B98BE478 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9579374696DA3C9C1AC37A64 /* Pods-ContentProtectionIntegration.debug.xcconfig */,
+				CD6ABAD3AD9CFA4F41C8F0E5 /* Pods-ContentProtectionIntegration.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E279FE2D25139E4700EC0EFA = {
 			isa = PBXGroup;
 			children = (
 				E279FE3825139E4700EC0EFA /* ContentProtectionIntegration */,
 				E279FE3725139E4700EC0EFA /* Products */,
 				E279FE4D25139EBA00EC0EFA /* Frameworks */,
+				1247B51564027806B98BE478 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				E279FE5225139F2000EC0EFA /* integration */,
-				E2B43C8B26E791470048696B /* TypeUtils.swift */,
 				E279FE3925139E4700EC0EFA /* AppDelegate.swift */,
 				E279FE3B25139E4700EC0EFA /* SceneDelegate.swift */,
 				E279FE3D25139E4700EC0EFA /* ViewController.swift */,
@@ -107,6 +92,7 @@
 				E279FE4225139E4900EC0EFA /* Assets.xcassets */,
 				E279FE4425139E4900EC0EFA /* LaunchScreen.storyboard */,
 				E279FE4725139E4900EC0EFA /* Info.plist */,
+				765B351B27B44D520001270E /* TypeUtils.swift */,
 			);
 			path = ContentProtectionIntegration;
 			sourceTree = "<group>";
@@ -114,10 +100,7 @@
 		E279FE4D25139EBA00EC0EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				620E3EA9267CF73B0049F3FF /* GoogleInteractiveMediaAds.framework */,
-				620E3EA6267CF6C70049F3FF /* GoogleCast.framework */,
-				620E3EA2267CF6590049F3FF /* THEOplayerSDK.framework */,
-				E279FE4E25139EBA00EC0EFA /* THEOplayerSDK.framework */,
+				E7E0E5387344C04F3BAFF4A8 /* Pods_ContentProtectionIntegration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,10 +124,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E279FE4A25139E4900EC0EFA /* Build configuration list for PBXNativeTarget "ContentProtectionIntegration" */;
 			buildPhases = (
+				0D15DADA531C7EBE18F2747C /* [CP] Check Pods Manifest.lock */,
 				E279FE3225139E4700EC0EFA /* Sources */,
 				E279FE3325139E4700EC0EFA /* Frameworks */,
 				E279FE3425139E4700EC0EFA /* Resources */,
-				620E3EA5267CF6590049F3FF /* Embed Frameworks */,
+				50CBB4E6454573C97513B0CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,6 +185,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D15DADA531C7EBE18F2747C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ContentProtectionIntegration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50CBB4E6454573C97513B0CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E279FE3225139E4700EC0EFA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -209,7 +235,7 @@
 				D99BC03525A4679200AE24B0 /* EzdrmDRMIntegration.swift in Sources */,
 				D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */,
 				E279FE3E25139E4700EC0EFA /* ViewController.swift in Sources */,
-				E2B43C8C26E791480048696B /* TypeUtils.swift in Sources */,
+				765B351C27B44D520001270E /* TypeUtils.swift in Sources */,
 				D5F8329A251CB0CF00032D63 /* UplynkDRMIntegration.swift in Sources */,
 				E279FE3A25139E4700EC0EFA /* AppDelegate.swift in Sources */,
 				D5F8329C251CB5C900032D63 /* AzureDRMIntegration.swift in Sources */,
@@ -356,6 +382,7 @@
 		};
 		E279FE4B25139E4900EC0EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9579374696DA3C9C1AC37A64 /* Pods-ContentProtectionIntegration.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -381,6 +408,7 @@
 		};
 		E279FE4C25139E4900EC0EFA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD6ABAD3AD9CFA4F41C8F0E5 /* Pods-ContentProtectionIntegration.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

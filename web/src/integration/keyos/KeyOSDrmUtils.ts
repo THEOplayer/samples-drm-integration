@@ -1,7 +1,7 @@
 import { KeyOSDrmConfiguration } from "./KeyOSDrmConfiguration";
 
 export function isKeyOSDrmDRMConfiguration(configuration: KeyOSDrmConfiguration): boolean {
-    return configuration.integrationParameters.customdata !== undefined;
+    return configuration.integrationParameters['x-keyos-authorization'] !== undefined;
 }
 
 export function extractContentId(skdUrl: string): string {
