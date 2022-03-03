@@ -264,6 +264,10 @@ The repository already contains a few integration examples that could be used as
 - Microsoft Azure DRM
 - KeyOS
 
+The repository also contains the following integration examples that use the default Widevine integration:
+
+- Verimatrix Core
+
 ### Testing an integration
 
 Make sure to apply the following steps before testing your custom integration. If a problem persists, please
