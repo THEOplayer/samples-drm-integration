@@ -237,6 +237,7 @@ or needs to be transformed or unwrapped first in a way similar to the request bo
 - Microsoft Azure DRM
 - Verizon Uplynk DRM
 - EZ DRM
+- Verimatrix Core DRM
 
 ### Testing an integration
 
