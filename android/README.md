@@ -264,9 +264,10 @@ The repository already contains a few integration examples that could be used as
 - Microsoft Azure DRM
 - KeyOS
 
-The repository also contains the following integration examples that use the default Widevine integration:
+The repository also lists some examples with placeholder data (in `SourceManager.java`) that can use the default Widevine integration:
 
 - Verimatrix Core
+- Verimatrix MultiDRM Standard
 
 ### Testing an integration
 
