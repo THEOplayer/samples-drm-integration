@@ -40,6 +40,8 @@ import {KeyOSDrmPlayReadyContentProtectionIntegrationFactory} from
         "./integration/keyos/keyOSDrmPlayReadyContentProtectionIntegrationFactory";
 import { VerimatrixDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/verimatrixcoredrm/VerimatrixDrmFairPlayContentProtectionIntegrationFactory';
+import { VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory} from
+        "./integration/verimatrixmultidrmstandard/VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory";
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -62,7 +64,8 @@ export {
     KeyOSDrmFairplayContentProtectionIntegrationFactory,
     KeyOSDrmPlayReadyContentProtectionIntegrationFactory,
     VerimatrixDrmFairPlayContentProtectionIntegrationFactory,
-    CastLabsDrmFairPlayContentProtectionIntegrationFactory
+    CastLabsDrmFairPlayContentProtectionIntegrationFactory,
+    VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory
 };
 
 export const THEOPLAYER_LICENSE = "YOUR_LICENSE_HERE";

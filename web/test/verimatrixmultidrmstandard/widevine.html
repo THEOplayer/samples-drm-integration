@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verimatrix Core DRM PlayReady Test</title>
+    <title>Verimatrix MultiDRM Standard Widevine Test</title>
     <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
     <script src="/THEOplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -20,22 +20,19 @@
     });
 
     const src = '<src>';
-    const licenseAcquisitionURL = 'https://multidrm.vsaas.verimatrixcloud.net/playready';
-    const token = '<token>';
-        
+    const deviceId = '<deviceId>'
+    const licenseAcquisitionURL = '"https://vcas4-gc.emea.vmxdemos.net/widevine?deviceId='+deviceId;
+
     player.source = {
         sources: [
             {
                 src: src,
                 type: 'application/dash+xml',
                 contentProtection: {
-                    playready: {
-                        licenseAcquisitionURL: licenseAcquisitionURL,
-                        headers: {
-                            'Authorization': token
-                        }
+                    widevine: {
+                        licenseAcquisitionURL: licenseAcquisitionURL
                     },
-                    preferredKeySystems: ['playready', 'widevine', 'fairplay']
+                    preferredKeySystems: ['widevine', 'playready', 'fairplay']
                 }
             }
         ]

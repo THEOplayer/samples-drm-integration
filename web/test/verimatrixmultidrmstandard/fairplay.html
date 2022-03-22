@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verimatrix Core DRM PlayReady Test</title>
+    <title>Verimatrix MultiDRM Standard FairPlay Test</title>
     <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
     <script src="/THEOplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -19,23 +19,29 @@
         libraryLocation: '/THEOplayer/'
     });
 
+    THEOplayer.registerContentProtectionIntegration(
+        'verimatrixmultidrmstandard',
+        'fairplay',
+        new ContentProtectionIntegrations.VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory()
+    );
+
     const src = '<src>';
-    const licenseAcquisitionURL = 'https://multidrm.vsaas.verimatrixcloud.net/playready';
-    const token = '<token>';
-        
+    const deviceId = '<deviceId>'
+    const licenseAcquisitionURL = 'https://vcas4-gc.emea.vmxdemos.net/fairplay?deviceId='+deviceId;
+    const certificateURL = '<certificateURL>';
+
     player.source = {
         sources: [
             {
                 src: src,
-                type: 'application/dash+xml',
+                type: 'application/x-mpegurl',
                 contentProtection: {
-                    playready: {
+                    fairplay: {
                         licenseAcquisitionURL: licenseAcquisitionURL,
-                        headers: {
-                            'Authorization': token
-                        }
+                        certificateURL: certificateURL
                     },
-                    preferredKeySystems: ['playready', 'widevine', 'fairplay']
+                    preferredKeySystems: ['fairplay', 'widevine', 'playready'],
+                    integration: 'verimatrixmultidrmstandard'
                 }
             }
         ]

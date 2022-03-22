@@ -146,6 +146,16 @@ public class SourceManager {
             )
         );
 
+        // Verimatrix MultiDRM Standard
+        sources.put(
+            "Verimatrix MultiDRM Standard",
+            buildDefaultWidevineSourceDescription(
+                "https://example.com/stream.mpd",
+                "https://vcas4-gc.emea.vmxdemos.net/widevine?deviceId=...",
+                new HashMap<String, String>() {{}}
+            )
+        );
+
         // add other registrations & sources here ...
     }
 }
