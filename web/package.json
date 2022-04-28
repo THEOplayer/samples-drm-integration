@@ -1,7 +1,7 @@
 {
   "name": "drm-api-plugins",
   "version": "1.0.0",
-  "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
+  "description": "THEOplayer samples for DRM integrations",
   "main": "index.js",
   "scripts": {
     "server": "http-server",
