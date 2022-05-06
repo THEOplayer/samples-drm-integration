@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanium DRM PlayReady Test using AuthToken</title>
+    <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
+    <script src="/THEOplayer/THEOplayer.js"></script>
+    <script src="/dist/bundle.js"></script>
+    <script src="../../THEOplayer/THEOplayer.js"></script>
+</head>
+<body>
+<div id="THEOplayer" class="theoplayer-container video-js theoplayer-skin"></div>
+<script type="text/javascript">
+    const element = document.querySelector('#THEOplayer');
+    const player = new THEOplayer.Player(element, {
+        ui: {
+            fluid: true
+        },
+        license: ContentProtectionIntegrations.THEOPLAYER_LICENSE,
+        libraryLocation: '/THEOplayer/'
+    });
+
+    THEOplayer.registerContentProtectionIntegration(
+        'titaniumdrm',
+        'playready',
+        new ContentProtectionIntegrations.TitaniumPlayReadyContentProtectionIntegrationFactory()
+    );
+
+    player.source = {
+        sources: [
+            {
+                src: 'insert manifest url here',
+                contentProtection: {
+                    playready: {
+                        licenseAcquisitionURL: 'insert license url here'
+                    },
+                    preferredKeySystems: ['playready'],
+                    integration: 'titaniumdrm',
+                    integrationParameters: {
+                        authToken: 'insert AuthToken here'
+                    }
+                }
+            }
+        ],
+    };
+</script>
+</body>
+</html>

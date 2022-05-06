@@ -279,6 +279,7 @@ For the `onCertificateResponse()` and `onLicenseResponse()` hooks the return typ
 - Nagra DRM
 - Vualto VuDRM
 - Verimatrix MultiDRM Core DRM 
+- Titanium DRM
 
 ### Testing an integration
 
