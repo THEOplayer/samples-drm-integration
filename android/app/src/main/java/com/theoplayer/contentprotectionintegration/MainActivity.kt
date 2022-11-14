@@ -8,6 +8,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.theoplayer.contentprotectionintegration.databinding.ActivityMainBinding
+import com.theoplayer.contentprotectionintegration.device.DeviceInfo
 
 const val EXTRA_SOURCE_NAME = "sourceName"
 
@@ -17,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.TheoTheme_Base)
         super.onCreate(savedInstanceState)
+
+        // Provide context to DeviceTypeResolver
+        DeviceInfo.init(this)
 
         // Inflating view and obtaining an instance of the binding class.
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
