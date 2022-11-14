@@ -1,21 +1,31 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion 33
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.theoplayer.contentprotectionintegration"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion 24
+        targetSdkVersion 33
         multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.theoplayer.theoplayer-sdk-android:basic-minapi21:+'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.theoplayer.theoplayer-sdk-android:unified:+'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.core:core-ktx:1.9.0'
 }

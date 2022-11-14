@@ -1,0 +1,14 @@
+<resources>
+    <string name="appName">ConnectorSamples</string>
+    <string name="appDisplayName">THEO DRM Connector Samples</string>
+
+    <dimen name="smallMargin">15dp</dimen>
+
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorText">#FFFFFF</color>
+
+    <!-- Get your license from https://portal.theoplayer.com -->
+    <string name="theoplayer_license"> </string>
+</resources>
