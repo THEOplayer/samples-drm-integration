@@ -137,6 +137,41 @@ class SourceManager private constructor(context: Context) {
             hashMapOf()
         )
 
+        // Titanium DRM using an authToken
+        val TITANIUM_AUTH_ID = "custom_titanium_auth"
+        THEOplayerGlobal.getSharedInstance(context).registerContentProtectionIntegration(
+            TITANIUM_AUTH_ID,
+            KeySystemId.WIDEVINE,
+            TitaniumWidevineContentProtectionIntegrationFactory()
+        )
+        sources["Titanium Widevine (authToken)"] = buildWidevineSourceDescription(
+            TITANIUM_AUTH_ID,
+            "<insert_manifest_here>",
+            "<insert_license_url_here>",
+            hashMapOf(
+                "authToken" to "<base64_auth_token>"
+            )
+        )
+
+        // Titanium DRM using deviceInfo
+        val TITANIUM_DEVICE_ID = "custom_titanium_device"
+        THEOplayerGlobal.getSharedInstance(context).registerContentProtectionIntegration(
+            TITANIUM_DEVICE_ID,
+            KeySystemId.WIDEVINE,
+            TitaniumWidevineContentProtectionIntegrationFactory()
+        )
+        sources["Titanium Widevine (device)"] = buildWidevineSourceDescription(
+            TITANIUM_DEVICE_ID,
+            "<insert_manifest_here>",
+            "<insert_license_url_here>",
+            hashMapOf(
+                "accountName" to "<accountName>",
+                "customerName" to "<customerName>",
+                "friendlyName" to "<friendlyName>",
+                "portalId" to "<portalId>",
+            )
+        )
+
         // add other registrations & sources here ...
     }
 }
