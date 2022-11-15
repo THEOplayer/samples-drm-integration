@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		620E3EA0267CF4910049F3FF /* KeyOsDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */; };
+		657D888E2923B4BB0083761C /* ArrisTitaniumDrmIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657D888D2923B4BB0083761C /* ArrisTitaniumDrmIntegration.swift */; };
 		765B351C27B44D520001270E /* TypeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765B351B27B44D520001270E /* TypeUtils.swift */; };
 		76B2A70027D150CF009480EB /* VerimatrixCoreDRMIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B2A6FF27D150CF009480EB /* VerimatrixCoreDRMIntegration.swift */; };
 		8FF28873064ABFF844CA8F8B /* Pods_ContentProtectionIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E0E5387344C04F3BAFF4A8 /* Pods_ContentProtectionIntegration.framework */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		620E3E9F267CF4910049F3FF /* KeyOsDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOsDRMIntegration.swift; sourceTree = "<group>"; };
+		657D888D2923B4BB0083761C /* ArrisTitaniumDrmIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrisTitaniumDrmIntegration.swift; sourceTree = "<group>"; };
 		765B351B27B44D520001270E /* TypeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeUtils.swift; sourceTree = "<group>"; };
 		76B2A6FF27D150CF009480EB /* VerimatrixCoreDRMIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerimatrixCoreDRMIntegration.swift; sourceTree = "<group>"; };
 		9579374696DA3C9C1AC37A64 /* Pods-ContentProtectionIntegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContentProtectionIntegration.debug.xcconfig"; path = "Target Support Files/Pods-ContentProtectionIntegration/Pods-ContentProtectionIntegration.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				D5F83299251CB0CF00032D63 /* UplynkDRMIntegration.swift */,
 				D99BC03425A4679200AE24B0 /* EzdrmDRMIntegration.swift */,
 				76B2A6FF27D150CF009480EB /* VerimatrixCoreDRMIntegration.swift */,
+				657D888D2923B4BB0083761C /* ArrisTitaniumDrmIntegration.swift */,
 			);
 			path = integration;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657D888E2923B4BB0083761C /* ArrisTitaniumDrmIntegration.swift in Sources */,
 				76B2A70027D150CF009480EB /* VerimatrixCoreDRMIntegration.swift in Sources */,
 				D99BC03525A4679200AE24B0 /* EzdrmDRMIntegration.swift in Sources */,
 				D5F83298251CAE7400032D63 /* VuDRMIntegration.swift in Sources */,
