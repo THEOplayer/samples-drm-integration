@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "server": "http-server",
-    "start": "ts-node src/index.ts",
     "build": "rollup -c ./rollup.config.js",
     "eslint": "eslint 'src/**/*.ts'"
   },
