@@ -46,6 +46,8 @@ import { TitaniumWidevineContentProtectionIntegrationFactory } from
         "./integration/titaniumdrm/TitaniumWidevineContentProtectionIntegrationFactory";
 import { TitaniumPlayReadyContentProtectionIntegrationFactory} from
         "./integration/titaniumdrm/TitaniumPlayReadyContentProtectionIntegrationFactory";
+import { TitaniumFairplayContentProtectionIntegrationFactory} from
+        "./integration/titaniumdrm/TitaniumFairplayContentProtectionIntegrationFactory";
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -72,6 +74,7 @@ export {
     VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory,
     TitaniumWidevineContentProtectionIntegrationFactory,
     TitaniumPlayReadyContentProtectionIntegrationFactory,
+    TitaniumFairplayContentProtectionIntegrationFactory,
 };
 
 export const THEOPLAYER_LICENSE = "YOUR_LICENSE_HERE";

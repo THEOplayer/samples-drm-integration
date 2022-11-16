@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Titanium DRM PlayReady Test using AuthToken</title>
+    <title>Titanium DRM Fairplay Test Using AuthToken</title>
     <link rel="stylesheet" type="text/css" href="/THEOplayer/ui.css">
     <script src="/THEOplayer/THEOplayer.js"></script>
     <script src="/dist/bundle.js"></script>
@@ -20,27 +20,26 @@
     });
 
     THEOplayer.registerContentProtectionIntegration(
-        'titaniumdrm',
-        'playready',
-        new ContentProtectionIntegrations.TitaniumPlayReadyContentProtectionIntegrationFactory()
+        'titanium',
+        'fairplay',
+        new ContentProtectionIntegrations.TitaniumFairplayContentProtectionIntegrationFactory()
     );
 
     player.source = {
-        sources: [
-            {
-                src: 'insert manifest url here',
-                contentProtection: {
-                    playready: {
-                        licenseAcquisitionURL: 'insert license url here'
-                    },
-                    preferredKeySystems: ['playready'],
-                    integration: 'titaniumdrm',
-                    integrationParameters: {
-                        authToken: 'insert AuthToken here'
-                    }
+        sources: {
+            src: 'insert manifest url here',
+            contentProtection: {
+                fairplay: {
+                    certificate: 'insert raw certificate',
+                    certificateUrl: 'or optional certificateUrl>',
+                    licenseAcquisitionURL: 'insert license url here'
+                },
+                integration: 'titanium',
+                integrationParameters: {
+                    authToken: 'insert auth token'
                 }
             }
-        ],
+        }
     };
 </script>
 </body>
