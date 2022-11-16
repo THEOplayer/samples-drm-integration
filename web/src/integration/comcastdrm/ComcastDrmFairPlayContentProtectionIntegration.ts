@@ -33,15 +33,15 @@ export class ComcastDrmFairPlayContentProtectionIntegration implements ContentPr
             throw new Error('The FairPlay ComcastDRM license url has not been correctly configured.');
         }
         const {token, account, releasePid} = this.contentProtectionConfiguration.integrationParameters;
-        let spcMessage = fromUint8ArrayToBase64String(request.body!);
-        let body = {
+        const spcMessage = fromUint8ArrayToBase64String(request.body!);
+        const body = {
             "getFairplayLicense": {
                 "releasePid": releasePid,
                 "spcMessage": spcMessage
             }
         };
 
-        let newBody = fromObjectToUint8Array(body);
+        const newBody = fromObjectToUint8Array(body);
         return {
             ...request,
             url: request.url + `&token=${token}&account=${account}&form=json`,

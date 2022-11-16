@@ -21,8 +21,8 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
 
     onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
         const {token, account, releasePid} = this.contentProtectionConfiguration.integrationParameters;
-        let widevineChallenge = fromUint8ArrayToBase64String(request.body!);
-        let body = {
+        const widevineChallenge = fromUint8ArrayToBase64String(request.body!);
+        const body = {
             "getWidevineLicense": {
                 "releasePid": releasePid,
                 "widevineChallenge": widevineChallenge
@@ -47,8 +47,8 @@ export class ComcastDrmWidevineContentProtectionIntegration implements ContentPr
             throw new Error('The Widevine AzureDRM license url has not been correctly configured.');
         }
         const {token, account, releasePid} = this.contentProtectionConfiguration.integrationParameters;
-        let widevineChallenge = fromUint8ArrayToBase64String(request.body!);
-        let body = {
+        const widevineChallenge = fromUint8ArrayToBase64String(request.body!);
+        const body = {
             "getWidevineLicense": {
                 "releasePid": releasePid,
                 "widevineChallenge": widevineChallenge

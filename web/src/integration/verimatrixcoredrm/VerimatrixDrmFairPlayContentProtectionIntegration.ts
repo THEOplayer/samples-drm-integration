@@ -25,11 +25,11 @@ export class VerimatrixDrmFairPlayContentProtectionIntegration implements Conten
     }
 
     onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        let spcMessage = fromUint8ArrayToBase64String(request.body!);
-        let body = {
+        const spcMessage = fromUint8ArrayToBase64String(request.body!);
+        const body = {
             "spc": spcMessage
         };
-        let newBody = fromObjectToUint8Array(body);
+        const newBody = fromObjectToUint8Array(body);
         const newRequest = {
             ...request,
             url: this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL ??

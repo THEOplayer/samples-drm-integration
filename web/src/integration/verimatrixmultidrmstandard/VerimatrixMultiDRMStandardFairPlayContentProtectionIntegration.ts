@@ -24,13 +24,13 @@ export class VerimatrixMultiDRMStandardFairPlayContentProtectionIntegration impl
     }
 
     onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        let spcMessage = fromUint8ArrayToBase64String(request.body!);
-        let url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
+        const spcMessage = fromUint8ArrayToBase64String(request.body!);
+        const url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL;
         if (!this.contentId) {
             throw new Error('The FairPlay Verimatrix Multi-DRM Standard content ID has not been correctly configured.');
         }
         const licenseParameters = `spc=${encodeURIComponent(spcMessage)}&assetId=${encodeURIComponent(this.contentId)}`;
-        let newBody = fromStringToUint8Array(licenseParameters);
+        const newBody = fromStringToUint8Array(licenseParameters);
         const newRequest = {
             ...request,
             url: url,

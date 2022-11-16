@@ -55,7 +55,7 @@ export class IrdetoControlFairplayContentProtectionIntegration implements Conten
     }
 
     extractFairplayContentId(skdUrl: string): string {
-        let parameters = skdUrl.split("?")[1].split("&");
+        const parameters = skdUrl.split("?")[1].split("&");
         for (let i = 0; i < parameters.length; i++) {
             const pair = parameters[i].split("=");
             if (pair[0] == "contentId") {
@@ -67,7 +67,7 @@ export class IrdetoControlFairplayContentProtectionIntegration implements Conten
         return skdUrl;
     }
 
-    hasQueryParameter(url: string, parameter: string): Boolean {
+    hasQueryParameter(url: string, parameter: string): boolean {
         const queryParameters = url.split("?");
         if (!queryParameters || !queryParameters[1]) {
             return false;
