@@ -1,19 +1,28 @@
-import { TitaniumDRMConfiguration, DeviceBasedTitaniumDRMConfiguration, TokenBasedTitaniumDRMConfiguration } from 'THEOplayer';
+/* eslint-disable no-undef */
+import type {
+    DeviceBasedTitaniumIntegrationParameters,
+    TitaniumIntegrationParameters,
+    TokenBasedTitaniumIntegrationParameters,
+} from './TitaniumIntegrationParameters';
+import type { TitaniumDrmConfiguration } from './TitaniumDrmConfiguration';
 
-export function isTitaniumDRMConfiguration(configuration: TitaniumDRMConfiguration): boolean {
-    return isTokenBasedTitaniumDRMConfiguration(configuration) || isDeviceBasedTitaniumDRMConfiguration((configuration));
+export function isTitaniumDRMConfiguration(configuration: TitaniumDrmConfiguration): boolean {
+    const integrationParameters = configuration.integrationParameters;
+    return isTokenBasedTitaniumDRMConfiguration(integrationParameters) || isDeviceBasedTitaniumDRMConfiguration(integrationParameters);
 }
 
-// eslint-disable-next-line no-undef
-export function isTokenBasedTitaniumDRMConfiguration(configuration: TitaniumDRMConfiguration): configuration is TokenBasedTitaniumDRMConfiguration {
-    return configuration.authToken !== undefined;
+export function isTokenBasedTitaniumDRMConfiguration(
+    integrationParameters: TitaniumIntegrationParameters,
+): integrationParameters is TokenBasedTitaniumIntegrationParameters {
+    return integrationParameters.authToken !== undefined;
 }
 
-// eslint-disable-next-line no-undef
-export function isDeviceBasedTitaniumDRMConfiguration(configuration: TitaniumDRMConfiguration): configuration is DeviceBasedTitaniumDRMConfiguration {
+export function isDeviceBasedTitaniumDRMConfiguration(
+    integrationParameters: TitaniumIntegrationParameters,
+): integrationParameters is DeviceBasedTitaniumIntegrationParameters {
     return (
-        configuration.accountName !== undefined &&
-        configuration.customerName !== undefined &&
-        configuration.portalId !== undefined
+        integrationParameters.accountName !== undefined &&
+        integrationParameters.customerName !== undefined &&
+        integrationParameters.portalId !== undefined
     );
 }

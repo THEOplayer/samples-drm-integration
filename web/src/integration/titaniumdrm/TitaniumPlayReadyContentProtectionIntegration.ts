@@ -1,27 +1,32 @@
-import { BufferSource, ContentProtectionIntegration, LicenseRequest, MaybeAsync } from 'THEOplayer';
 import { isTitaniumDRMConfiguration } from './TitaniumUtils';
-import { TitaniumDrmIntegrationConfiguration } from './TitaniumDrmIntegrationConfiguration';
-import { createTitaniumCDataHeader, TitaniumCDMType } from './TitaniumBaseRegistration';
+import { createTitaniumHeaders, TitaniumCDMType } from './TitaniumBaseRegistration';
+import type { BufferSource, ContentProtectionIntegration, LicenseRequest, MaybeAsync } from 'THEOplayer';
+import type { TitaniumDrmConfiguration } from './TitaniumDrmConfiguration';
+import { CertificateRequest } from 'THEOplayer';
 
 export class TitaniumPlayReadyContentProtectionIntegration implements ContentProtectionIntegration {
+    private readonly contentProtectionConfiguration: TitaniumDrmConfiguration;
 
-    private readonly contentProtectionConfiguration: TitaniumDrmIntegrationConfiguration;
-
-    constructor(drmConfiguration: TitaniumDrmIntegrationConfiguration) {
-        if (!isTitaniumDRMConfiguration(drmConfiguration.integrationParameters)) {
-            throw new Error('The PlayReady Titanium authToken has not been correctly configured.');
+    constructor(drmConfiguration: TitaniumDrmConfiguration) {
+        if (!isTitaniumDRMConfiguration(drmConfiguration)) {
+            throw new Error('Titanium DRM has not been correctly configured.');
         }
         this.contentProtectionConfiguration = drmConfiguration;
     }
 
-    onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
-        const { version } = this.contentProtectionConfiguration.integrationParameters;
-        const cdmType = version === '2' ? TitaniumCDMType.PLAYREADY_v2 : TitaniumCDMType.PLAYREADY_v3;
+    onCertificateRequest(request: CertificateRequest): MaybeAsync<Partial<CertificateRequest> | BufferSource> {
         request.headers = {
             ...request.headers,
-            'Content-Type': 'text/xml; charset=utf-8',
-            'X-TITANIUM-DRM-CDATA': createTitaniumCDataHeader(this.contentProtectionConfiguration.integrationParameters, cdmType)
-        }
+            ...createTitaniumHeaders(this.contentProtectionConfiguration, TitaniumCDMType.WIDEVINE),
+        };
+        return request;
+    }
+
+    onLicenseRequest(request: LicenseRequest): MaybeAsync<Partial<LicenseRequest> | BufferSource> {
+        request.headers = {
+            ...request.headers,
+            ...createTitaniumHeaders(this.contentProtectionConfiguration, TitaniumCDMType.WIDEVINE),
+        };
         return request;
     }
 }

@@ -1,12 +1,9 @@
-import {
-    ContentProtectionIntegration,
-    ContentProtectionIntegrationFactory
-} from 'THEOplayer';
+import type { ContentProtectionIntegration, ContentProtectionIntegrationFactory } from 'THEOplayer';
+import type { TitaniumDrmConfiguration } from './TitaniumDrmConfiguration';
 import { TitaniumWidevineContentProtectionIntegration } from './TitaniumWidevineContentProtectionIntegration';
-import { TitaniumDrmIntegrationConfiguration } from './TitaniumDrmIntegrationConfiguration';
 
 export class TitaniumWidevineContentProtectionIntegrationFactory implements ContentProtectionIntegrationFactory {
-    build(configuration: TitaniumDrmIntegrationConfiguration): ContentProtectionIntegration {
+    build(configuration: TitaniumDrmConfiguration): ContentProtectionIntegration {
         return new TitaniumWidevineContentProtectionIntegration(configuration);
     }
 }
