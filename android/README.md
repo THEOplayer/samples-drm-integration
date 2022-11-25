@@ -267,7 +267,6 @@ The repository already contains a few integration examples that could be used as
 The repository also lists some examples with placeholder data (in `SourceManager`) that can use the default Widevine integration:
 
 - Verimatrix Core
-- Verimatrix MultiDRM Standard
 - Titanium DRM, either using authToken or device info
 
 ### Testing an integration
