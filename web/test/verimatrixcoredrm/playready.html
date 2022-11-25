@@ -19,10 +19,16 @@
         libraryLocation: '/THEOplayer/'
     });
 
+    THEOplayer.registerContentProtectionIntegration(
+        'verimatrixcore',
+        'playready',
+        new ContentProtectionIntegrations.VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory()
+    );
+
     const src = '<src>';
     const licenseAcquisitionURL = 'https://multidrm.vsaas.verimatrixcloud.net/playready';
     const token = '<token>';
-        
+
     player.source = {
         sources: [
             {
@@ -31,9 +37,10 @@
                 contentProtection: {
                     playready: {
                         licenseAcquisitionURL: licenseAcquisitionURL,
-                        headers: {
-                            'Authorization': token
-                        }
+                    },
+                    integration: 'verimatrixcore',
+                    integrationParameters: {
+                        drmToken
                     },
                     preferredKeySystems: ['playready', 'widevine', 'fairplay']
                 }

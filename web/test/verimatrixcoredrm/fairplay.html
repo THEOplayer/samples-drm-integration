@@ -22,7 +22,7 @@
     THEOplayer.registerContentProtectionIntegration(
         'verimatrixcore',
         'fairplay',
-        new ContentProtectionIntegrations.VerimatrixDrmFairPlayContentProtectionIntegrationFactory()
+        new ContentProtectionIntegrations.VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory()
     );
 
     const src = '<your_m3u8_stream>';
@@ -39,8 +39,11 @@
                         licenseAcquisitionURL: licenseAcquisitionURL,
                         certificateURL: certificateURL
                     },
+                    integration: 'verimatrixcore',
+                    integrationParameters: {
+                        drmToken
+                    },
                     preferredKeySystems: ['fairplay', 'widevine', 'playready'],
-                    integration: 'verimatrixcore'
                 }
             }
         ]

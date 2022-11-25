@@ -19,10 +19,16 @@
         libraryLocation: '/THEOplayer/'
     });
 
+    THEOplayer.registerContentProtectionIntegration(
+        'verimatrixcore',
+        'widevine',
+        new ContentProtectionIntegrations.VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory()
+    );
+
     const src = '<src>';
     const licenseAcquisitionURL = 'https://multidrm.vsaas.verimatrixcloud.net/widevine';
-    const token = '<token>';
-        
+    const drmToken = '<token>';
+
     player.source = {
         sources: [
             {
@@ -30,10 +36,11 @@
                 type: 'application/dash+xml',
                 contentProtection: {
                     widevine: {
-                        licenseAcquisitionURL: licenseAcquisitionURL,
-                        headers: {
-                            'Authorization': token
-                        }
+                        licenseAcquisitionURL: licenseAcquisitionURL
+                    },
+                    integration: 'verimatrixcore',
+                    integrationParameters: {
+                        drmToken
                     },
                     preferredKeySystems: ['widevine', 'playready', 'fairplay']
                 }
