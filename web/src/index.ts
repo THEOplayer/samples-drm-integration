@@ -24,7 +24,7 @@ import { ComcastDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/comcastdrm/ComcastDrmFairPlayContentProtectionIntegrationFactory';
 import { CastLabsDrmFairPlayContentProtectionIntegrationFactory } from
         './integration/castlabs/CastLabsDrmFairPlayContentProtectionIntegrationFactory';
-import { IrdetoControlFairplayContentProtectionIntegrationFactory} from
+import { IrdetoControlFairplayContentProtectionIntegrationFactory } from
         './integration/irdetocontrol/IrdetoControlFairplayContentProtectionIntegrationFactory';
 import { NagraDrmWidevineContentProtectionIntegrationFactory } from
         './integration/nagradrm/NagraDrmWidevineContentProtectionIntegrationFactory';
@@ -35,19 +35,21 @@ import { NagraDrmFairPlayContentProtectionIntegrationFactory } from
 import { KeyOSDrmFairplayContentProtectionIntegrationFactory } from
         './integration/keyos/KeyOSDrmFairplayContentProtectionIntegrationFactory';
 import { KeyOSDrmWidevineContentProtectionIntegrationFactory } from
-        "./integration/keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory";
-import { KeyOSDrmPlayReadyContentProtectionIntegrationFactory} from
-        "./integration/keyos/keyOSDrmPlayReadyContentProtectionIntegrationFactory";
-import { VerimatrixDrmFairPlayContentProtectionIntegrationFactory } from
-        './integration/verimatrixcoredrm/VerimatrixDrmFairPlayContentProtectionIntegrationFactory';
-import { VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory} from
-        "./integration/verimatrixmultidrmstandard/VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory";
+        './integration/keyos/KeyOSDrmWidevineContentProtectionIntegrationFactory';
+import { KeyOSDrmPlayReadyContentProtectionIntegrationFactory } from
+        './integration/keyos/keyOSDrmPlayReadyContentProtectionIntegrationFactory';
+import { VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory } from
+        './integration/verimatrixcoredrm/VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory';
+import { VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory } from
+        './integration/verimatrixcoredrm/VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory';
+import { VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory } from
+        './integration/verimatrixcoredrm/VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory';
 import { TitaniumWidevineContentProtectionIntegrationFactory } from
-        "./integration/titaniumdrm/TitaniumWidevineContentProtectionIntegrationFactory";
-import { TitaniumPlayReadyContentProtectionIntegrationFactory} from
-        "./integration/titaniumdrm/TitaniumPlayReadyContentProtectionIntegrationFactory";
-import { TitaniumFairplayContentProtectionIntegrationFactory} from
-        "./integration/titaniumdrm/TitaniumFairplayContentProtectionIntegrationFactory";
+        './integration/titaniumdrm/TitaniumWidevineContentProtectionIntegrationFactory';
+import { TitaniumPlayReadyContentProtectionIntegrationFactory } from
+        './integration/titaniumdrm/TitaniumPlayReadyContentProtectionIntegrationFactory';
+import { TitaniumFairplayContentProtectionIntegrationFactory } from
+        './integration/titaniumdrm/TitaniumFairplayContentProtectionIntegrationFactory';
 
 export {
     AxinomDrmWidevineContentProtectionIntegrationFactory,
@@ -69,12 +71,13 @@ export {
     KeyOSDrmWidevineContentProtectionIntegrationFactory,
     KeyOSDrmFairplayContentProtectionIntegrationFactory,
     KeyOSDrmPlayReadyContentProtectionIntegrationFactory,
-    VerimatrixDrmFairPlayContentProtectionIntegrationFactory,
+    VerimatrixCoreDrmFairplayContentProtectionIntegrationFactory,
+    VerimatrixCoreDrmWidevineContentProtectionIntegrationFactory,
+    VerimatrixCoreDrmPlayReadyContentProtectionIntegrationFactory,
     CastLabsDrmFairPlayContentProtectionIntegrationFactory,
-    VerimatrixMultiDRMStandardFairPlayContentProtectionIntegrationFactory,
     TitaniumWidevineContentProtectionIntegrationFactory,
     TitaniumPlayReadyContentProtectionIntegrationFactory,
     TitaniumFairplayContentProtectionIntegrationFactory,
 };
 
-export const THEOPLAYER_LICENSE = "YOUR_LICENSE_HERE";
+export const THEOPLAYER_LICENSE = 'YOUR_LICENSE_HERE';
