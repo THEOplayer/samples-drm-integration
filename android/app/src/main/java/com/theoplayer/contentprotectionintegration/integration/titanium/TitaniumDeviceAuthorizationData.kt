@@ -5,17 +5,17 @@ data class TitaniumCDMDescription(
      * String denoting the vendor of the underlying Content Decryption Module (CDM) provided by
      * the host platform, e.g. “Google” (OPTIONAL)
      */
-    val DRMProvider: String,
+    val DRMProvider: String?,
 
     /**
      * String denoting the CDM version (OPTIONAL)
      */
-    val DRMVersion: String,
+    val DRMVersion: String?,
 
     /**
      * String denoting the DRM scheme that the CDM implements, e.g. “Widevine” (OPTIONAL)
      */
-    val DRMType: String,
+    val DRMType: String?,
 )
 
 val TitaniumWidevineCDMDescription = TitaniumCDMDescription(
@@ -46,43 +46,43 @@ data class TitaniumDeviceInfo(
     /**
      * String that should be set to the value “PC” for browser-based applications (OPTIONAL).
      */
-    val DeviceType: String,
+    val DeviceType: String?,
 
     /**
      * String denoting the operating system version of the host platform, e.g. “Linux” (OPTIONAL).
      */
-    val OSType: String,
+    val OSType: String?,
 
     /**
      * String denoting the operating system version of the host platform, e.g. “8.1” (OPTIONAL).
      */
-    val OSVersion: String,
+    val OSVersion: String?,
 
     /**
      * String denoting the vendor of the underlying Content Decryption Module (CDM) provided by
      * the host platform, e.g. “Google” (OPTIONAL).
      */
-    val DRMProvider: String,
+    val DRMProvider: String?,
 
     /**
      * String denoting the CDM version (OPTIONAL).
      */
-    val DRMVersion: String,
+    val DRMVersion: String?,
 
     /**
      * String denoting the DRM scheme that the CDM implements, e.g. “Widevine” (OPTIONAL).
      */
-    val DRMType: String,
+    val DRMType: String?,
 
     /**
      * String denoting the OEM vendor of the host hardware platform (OPTIONAL).
      */
-    val DeviceVendor: String,
+    val DeviceVendor: String?,
 
     /**
      * String denoting the OEM model identifier of the host hardware platform (OPTIONAL).
      */
-    val DeviceModel: String
+    val DeviceModel: String?
 )
 
 data class TitaniumLatensRegistration(
