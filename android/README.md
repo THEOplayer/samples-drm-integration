@@ -37,55 +37,57 @@ DRM flow.
 All methods are optional. They can be omitted if the integration does not require additional action, in which case the
 default implementation will be used.
 
-```java
-package com.theoplayer.contentprotectionintegration.custom;
+```
+package com.theoplayer.contentprotectionintegration.custom
 
-import com.theoplayer.android.api.contentprotection.CertificateRequestCallback;
-import com.theoplayer.android.api.contentprotection.CertificateResponseCallback;
-import com.theoplayer.android.api.contentprotection.ContentProtectionIntegration;
-import com.theoplayer.android.api.contentprotection.LicenseRequestCallback;
-import com.theoplayer.android.api.contentprotection.LicenseResponseCallback;
-import com.theoplayer.android.api.contentprotection.Request;
-import com.theoplayer.android.api.contentprotection.Response;
-import com.theoplayer.android.api.source.drm.DRMConfiguration;
+import com.theoplayer.android.api.contentprotection.CertificateRequestCallback
+import com.theoplayer.android.api.contentprotection.CertificateResponseCallback
+import com.theoplayer.android.api.contentprotection.ContentProtectionIntegration
+import com.theoplayer.android.api.contentprotection.LicenseRequestCallback
+import com.theoplayer.android.api.contentprotection.LicenseResponseCallback
+import com.theoplayer.android.api.contentprotection.Request
+import com.theoplayer.android.api.contentprotection.Response
+import com.theoplayer.android.api.source.drm.DRMConfiguration
 
-public class CustomContentProtectionIntegration extends ContentProtectionIntegration {
+class CustomContentProtectionIntegration(private val contentProtectionConfiguration: DRMConfiguration) :
+    ContentProtectionIntegration() {
 
-    private final DRMConfiguration contentProtectionConfiguration;
-
-    public CustomContentProtectionIntegration(DRMConfiguration configuration) {
-        this.contentProtectionConfiguration = configuration;
+    override fun onCertificateRequest(request: Request, callback: CertificateRequestCallback) {
+        callback.request(request)
     }
 
-    public void onCertificateRequest(Request request, CertificateRequestCallback callback) {
-        callback.request(request);
+    override fun onCertificateResponse(response: Response, callback: CertificateResponseCallback) {
+        callback.respond(response.body)
     }
 
-    public void onCertificateResponse(Response response, CertificateResponseCallback callback) {
-        callback.respond(response.getBody());
-    }
-
-    public void onLicenseRequest(Request request, LicenseRequestCallback callback) {
-        // Optionally apply integration parameters, such as a token, which are passed when setting the source, or
-        // add additional header fields.
-        // final Object token = this.contentProtectionConfiguration.getIntegrationParameters().get("token");
-        // request.getHeaders().put("x-token", token.toString());
-        // request.getHeaders().put("Content-Type", "text/plain");
+    override fun onLicenseRequest(Request request, LicenseRequestCallback callback) {
+        // /**
+        //  * Optionally apply integration parameters, such as a token, which are passed when setting the source, or
+        //  * add additional header fields.
+        //  */
+        // val token = contentProtectionConfiguration.integrationParameters["token"]
+        // request.headers["x-token"] = token
+        // request.headers["Content-Type"] = "text/plain"
         
-        // If required by the DRM provider, wrap or transform the request body.
-        // JSONObject jsonBody = new JSONObject();
+        // /** 
+        //  * If required by the DRM provider, wrap or transform the request body.
+        //  */
+        // val kid = contentProtectionConfiguration.integrationParameters["keyId"]
+        // val jsonBody = JSONObject()
         // try {
-        //    jsonBody.put("drm_info", TypeUtils.fromByteArrayToUint8JsonArray(request.getBody()));
-        // } catch (JSONException e) {
-        //     e.printStackTrace();
+        //     jsonBody.put("token", token)
+        //     jsonBody.put("drm_info", fromByteArrayToUint8JsonArray(request.body!!))
+        //     jsonBody.put("kid", kid)
+        // } catch (e: JSONException) {
+        //     e.printStackTrace()
         // }
-        // request.setBody(TypeUtils.fromJsonToByteArray(jsonBody));
+        // request.body = fromJsonToByteArray(jsonBody)
         
-        callback.request(request);
+        callback.request(request)
     }
 
-    public void onLicenseResponse(Response response, LicenseResponseCallback callback) {
-        callback.respond(response.getBody());
+    override fun onLicenseResponse(response: Response, callback: LicenseResponseCallback) {
+        callback.respond(response.body)
     }
 }
 ```
@@ -102,17 +104,17 @@ THEOplayer will use this factory in its DRM flow whenever it needs a ContentProt
 matches with the content protected source. How THEOplayer knows which factory to take will be determined in the
 `registerContentProtectionIntegration` step next.
 
-```java
-package com.theoplayer.contentprotectionintegration.custom;
+```
+package com.theoplayer.contentprotectionintegration.custom
 
-import com.theoplayer.android.api.contentprotection.ContentProtectionIntegration;
-import com.theoplayer.android.api.contentprotection.ContentProtectionIntegrationFactory;
-import com.theoplayer.android.api.source.drm.DRMConfiguration;
+import com.theoplayer.android.api.contentprotection.ContentProtectionIntegration
+import com.theoplayer.android.api.contentprotection.ContentProtectionIntegrationFactory
+import com.theoplayer.android.api.source.drm.DRMConfiguration
 
-public class CustomContentProtectionIntegrationFactory implements ContentProtectionIntegrationFactory {
-    @Override
-    public ContentProtectionIntegration build(DRMConfiguration configuration) {
-        return new CustomContentProtectionIntegration(configuration);
+class CustomContentProtectionIntegrationFactory: ContentProtectionIntegrationFactory {
+    
+    override fun build(configuration: DRMConfiguration): ContentProtectionIntegration {
+        return CustomContentProtectionIntegration(configuration)
     }
 }
 ```
@@ -136,48 +138,45 @@ passed during registration, an instance of `CustomContentProtectionIntegration` 
 Also add the source description here, which provides the manifest and license URLs along with any integration parameters.
 
 ```java
-public class SourceManager {
+class SourceManager private constructor(context: Context) {
 
-    private void initSources(Context context) {
+    private fun initSources(context: Context) {
         // Custom content protect integration
-        String CUSTOM_ID = "CUSTOM";
+        val CUSTOM_ID = "CUSTOM"
         THEOplayerGlobal.getSharedInstance(context).registerContentProtectionIntegration(
-                CUSTOM_ID,
-                KeySystemId.WIDEVINE,
-                new CustomContentProtectionIntegrationFactory()
-        );
-        sources.put(
-                "Custom Widevine",
-                buildWidevineSourceDescription(
-                        CUSTOM_ID,
-                        "<insert_manifest_here>",
-                        "<insert_license_url_here>",
-                        new HashMap<String, Object>() {{
-                            // optional integration parameters
-                            // put("token", "<insert_token_here>");
-                        }}
-                )
-        );
+            CUSTOM_ID,
+            KeySystemId.WIDEVINE,
+            CustomWidevineContentProtectionIntegrationFactory()
+        )
+        sources["Custom Widevine"] = buildWidevineSourceDescription(
+            CUSTOM_ID,
+            "<insert_manifest_here>",
+            "<insert_license_url_here>",
+            hashMapOf(
+                // optional integration parameters
+                // "token" to "<insert_token_here>",
+                // "keyId" to "<insert_key_id_here>"
+            )
+        )
     
         // add other registrations & sources here ...
     }
 
-    private SourceDescription buildWidevineSourceDescription(
-            String integrationId,
-            String manifestUrl,
-            String licenseUrl,
-            HashMap<String, Object> integrationParams) {
-        return sourceDescription(
-                typedSource(manifestUrl)
-                        .setNativeRenderingEnabled(true)
-                        .setNativeUiRenderingEnabled(false)
-                        .drm(new DRMConfiguration.Builder()
-                                .customIntegrationId(integrationId)
-                                .integrationParameters(integrationParams)
-                                .widevine(keySystemConfiguration(licenseUrl).build())
-                                .build())
-                        .build()
-        ).build();
+    private fun buildWidevineSourceDescription(
+        integrationId: String,
+        manifestUrl: String,
+        licenseUrl: String,
+        integrationParams: HashMap<String, Any>
+    ): SourceDescription {
+        return SourceDescription.Builder(
+            TypedSource.Builder(manifestUrl)
+                .drm(DRMConfiguration.Builder()
+                    .customIntegrationId(integrationId)
+                    .integrationParameters(integrationParams)
+                    .widevine(KeySystemConfiguration.Builder(licenseUrl).build())
+                    .build())
+                .build()
+        ).build()
     }
 }
 ```
@@ -216,17 +215,18 @@ A common way of passing extra data to the server is by wrapping the raw request 
 in a JSON object with some additional properties, which is then transformed back into the required type `byte[]`. The following
 example is taken from the [VuDRM integration sample](app/src/main/java/com/theoplayer/contentprotectionintegration/integration/vudrm/VudrmWidevineContentProtectionIntegration.java):
 
-```java
-JSONObject jsonBody = new JSONObject();
-try {
-    jsonBody.put("token", token);
-    jsonBody.put("drm_info", TypeUtils.fromByteArrayToUint8JsonArray(request.getBody()));
-    jsonBody.put("kid", kid);
-} catch (JSONException e) {
-    e.printStackTrace();
-}
-request.setBody(jsonBody.toString().getBytes());
 ```
+val jsonBody = JSONObject()
+try {
+    jsonBody.put("token", token)
+    jsonBody.put("drm_info", fromByteArrayToUint8JsonArray(request.body!!))
+    jsonBody.put("kid", kid)
+} catch (e: JSONException) {
+    e.printStackTrace()
+}
+request.body = fromJsonToByteArray(jsonBody)
+```
+
 where the `fromByteArrayToUint8JsonArray` helper method creates a JSON array from a `byte[]` object.
 
 Similarly, the `Response` object returned from the server contains among others the response headers and the response
@@ -264,10 +264,10 @@ The repository already contains a few integration examples that could be used as
 - Microsoft Azure DRM
 - KeyOS
 
-The repository also lists some examples with placeholder data (in `SourceManager.java`) that can use the default Widevine integration:
+The repository also lists some examples with placeholder data (in `SourceManager`) that can use the default Widevine integration:
 
 - Verimatrix Core
-- Verimatrix MultiDRM Standard
+- Titanium DRM, either using authToken or device info
 
 ### Testing an integration
 
@@ -276,7 +276,7 @@ reach out to THEOplayer [customer support](https://www.theoplayer.com/contact).
 
 - Depending on the features included in your THEOplayer build, include the necessary dependencies in `/android/app/build.gradle`.
 - Open the `/android` folder in [Android Studio](https://developer.android.com/studio) and build the project.
-- Ensure that a valid license key is entered in the `AndroidManifest.xml` instead of `"YOUR_LICENSE_HERE"`. More information is available at https://github.com/THEOplayer/theoplayer-sdk-android.
+- Ensure that a valid license key is entered in the `theoplayer_license` entry of `values.xml`. More information is available at https://github.com/THEOplayer/theoplayer-sdk-android.
 - Make sure to fill in the necessary fields in `SourceManager` for the content integration that will be tested, such as the manifest url and any integration parameters.
 - Attach either a physical Android device or start an Android emulator, and run the project.
 
