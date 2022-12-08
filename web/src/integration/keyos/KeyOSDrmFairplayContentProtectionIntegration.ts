@@ -54,7 +54,7 @@ export class KeyOSDrmFairplayContentProtectionIntegration implements ContentProt
     }
 
     onLicenseResponse?(response: LicenseResponse): MaybeAsync<BufferSource> {
-        let bodyAsString = fromUint8ArrayToUtf8String(response.body)
+        const bodyAsString = fromUint8ArrayToUtf8String(response.body)
         let keyText = bodyAsString.trim()
         if (keyText.substr(0, 5) === '<ckc>' && keyText.substr(-6) === '</ckc>') {
             keyText = keyText.slice(5, -6)
