@@ -238,6 +238,7 @@ or needs to be transformed or unwrapped first in a way similar to the request bo
 - Verizon Uplynk DRM
 - EZ DRM
 - Verimatrix Core DRM
+- Arris Titanium DRM (supported from THEOplayer 4.4.0)
 
 ### Testing an integration
 
@@ -253,3 +254,4 @@ or needs to be transformed or unwrapped first in a way similar to the request bo
 This document showed how to create a custom DRM integration for iOS using THEOplayer's Content Integration API,
 and register it with THEOplayer. The iOS integration API can slightly differ on other platforms, so it is best
 to check the platform's specific document.
+ 

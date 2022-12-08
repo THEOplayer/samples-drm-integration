@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         THEOplayer.registerContentProtectionIntegration(integrationId: VerimatrixCoreDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: VerimatrixCoreDRMIntegrationFactory())
         
+        THEOplayer.registerContentProtectionIntegration(integrationId: TitaniumDRMIntegration.integrationID, keySystem: .FAIRPLAY, integrationFactory: TitaniumDRMIntegrationFactory())
+
         return true
     }
 
