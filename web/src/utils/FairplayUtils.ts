@@ -5,6 +5,13 @@ export function extractContentId(skdUrl: string): string {
     if (questionMarkIndex >= 0) {
         return skdUrl.substr(questionMarkIndex + 1);
     } else {
+        const strippedSkd = skdUrl.split('skd://').pop();
+        if (strippedSkd) {
+            const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+            if (base64regex.test(strippedSkd)) {
+                return strippedSkd;
+            }
+        }
         const chunks = skdUrl.split('/');
         return chunks[chunks.length - 1];
     }
