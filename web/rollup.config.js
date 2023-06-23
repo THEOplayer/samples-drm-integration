@@ -18,7 +18,7 @@ export default {
         commonJs({ extensions: [".js", ".ts"] }),
         copy({
             targets: [
-                { src: './node_modules/theoplayer/*.(js|css|html)' , dest: './THEOplayer' }
+                { src: './node_modules/theoplayer/*.(js|css|html|ts|wasm)' , dest: './THEOplayer' }
             ]
         }),
         typescript()
