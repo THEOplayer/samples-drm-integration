@@ -54,6 +54,8 @@ THEOplayer Content Protection API.
 
 More information on the integration process can be found in the [how-to guide](https://docs.theoplayer.com/how-to-guides/04-drm/00-introduction.md).
 
+DRM connector samples for the THEOplayer React Native SDK can be found [here](https://github.com/THEOplayer/react-native-theoplayer-drm).
+
 ### Getting started
 - [Getting started on Web](web/README.md)
 - [Getting started on Android](android/README.md)
