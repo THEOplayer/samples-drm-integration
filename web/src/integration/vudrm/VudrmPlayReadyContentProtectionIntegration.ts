@@ -28,7 +28,7 @@ export class VudrmPlayReadyContentProtectionIntegration implements ContentProtec
                 url.searchParams.set(key, this.contentProtectionConfiguration.playready.queryParameters[key]);
             }
         }
-        url.searchParams.set('token', this.contentProtectionConfiguration.integrationParameters.token);
+        url.searchParams.set('token', this.contentProtectionConfiguration.token);
         request.url = url.toString();
         return request;
     }

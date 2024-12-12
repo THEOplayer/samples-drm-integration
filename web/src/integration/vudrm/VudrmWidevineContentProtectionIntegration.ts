@@ -22,7 +22,7 @@ export class VudrmWidevineContentProtectionIntegration implements ContentProtect
     }
 
     private wrapRequestBody(body: Uint8Array): Uint8Array {
-        const token = this.contentProtectionConfiguration.integrationParameters.token;
+        const token = this.contentProtectionConfiguration.token;
         const drmInfo = fromUint8ArrayToNumberArray(body);
         const kid = this.contentProtectionConfiguration?.keyId ?? "";
         return fromObjectToUint8Array({token, drm_info: drmInfo, kid});

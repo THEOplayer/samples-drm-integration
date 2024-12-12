@@ -31,7 +31,7 @@ export class VudrmFairplayContentProtectionIntegration implements ContentProtect
         request.headers = {
             ...request.headers,
             'Content-Type': 'application/json',
-            'x-vudrm-token': this.contentProtectionConfiguration.integrationParameters.token
+            'x-vudrm-token': this.contentProtectionConfiguration.token
         };
         return request;
     }
@@ -40,13 +40,13 @@ export class VudrmFairplayContentProtectionIntegration implements ContentProtect
         request.url = this.contentProtectionConfiguration.fairplay?.licenseAcquisitionURL ??
             VudrmFairplayContentProtectionIntegration.DEFAULT_LICENSE_URL;
         const licenseParameters = {
-            token: this.contentProtectionConfiguration.integrationParameters.token,
+            token: this.contentProtectionConfiguration.token,
             contentId: this.contentId,
             payload: fromUint8ArrayToBase64String(request.body!)
         };
         request.headers = {
             'Content-Type': 'application/json',
-            'x-vudrm-token': this.contentProtectionConfiguration.integrationParameters.token
+            'x-vudrm-token': this.contentProtectionConfiguration.token
         }
         request.body = fromObjectToUint8Array(licenseParameters);
         return request;
