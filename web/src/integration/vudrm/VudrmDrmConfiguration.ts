@@ -29,22 +29,15 @@ export interface VudrmDrmConfiguration extends DRMConfiguration {
      * The identifier of the DRM integration.
      */
     integration: VudrmIntegrationID;
+    /**
+     * The authentication token.
+     */
+    token: string;
 
     /**
-     * An object of key/value pairs which can be used to pass in specific parameters related to a source into a
-     * ContentProtectionIntegration
+     * The key id.
+     *
+     * <br/> - Only mandatory for Widevine.
      */
-    integrationParameters: {
-        /**
-         * The authentication token.
-         */
-        token: string;
-
-        /**
-         * The key id.
-         *
-         * <br/> - Only mandatory for Widevine.
-         */
-        keyId?: string;
-    };
+    keyId?: string;
 }
