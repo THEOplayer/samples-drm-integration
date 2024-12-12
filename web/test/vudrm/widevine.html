@@ -26,23 +26,27 @@
     );
 
     player.source = {
-        sources: [
+        "sources": [
             {
-                src: 'insert manifest url here',
-                contentProtection: {
-                    widevine: {
-                        licenseAcquisitionURL: 'insert license url here'
-                    },
-                    preferredKeySystems: ['widevine', 'playready', 'fairplay'],
-                    integration: 'vudrm',
-                    integrationParameters: {
-                        token: 'insert token here',
-                        keyId: 'insert keyId here'
+                "src": "manifest url here",
+                "type": "application/dash+xml",
+                "lowLatency": false,
+                "contentProtection": {
+                    "preferredKeySystems": [
+                        "widevine"
+                    ],
+                    "integration": "vudrm",
+                    "token": "",
+                    "widevine": {
+                        "licenseAcquisitionURL": "LA url here"
                     }
+                },
+                "abr": {
+                    "restrictToPlayerSize": false
                 }
             }
-        ],
-    };
+        ]
+    }
 </script>
 </body>
 </html>
