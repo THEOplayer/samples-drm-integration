@@ -19,11 +19,11 @@ class KeyOsDRMIntegration: ContentProtectionIntegration {
         self.configuration = configuration
     }
     
-    func extractFairplayContentId(skdUrl: String) -> String {
+    func onExtractFairplayContentId(skdUrl: String, callback: ExtractContentIdCallback) {
         let components = skdUrl.components(separatedBy: "?")
         let skd = components.last!
         self.contentId = skd.replacingOccurrences(of: "skd://", with: "")
-        return skd
+        callback.respond(contentID: self.contentId!.data(using: .utf8))
     }
 
     func onCertificateRequest(request: CertificateRequest, callback: CertificateRequestCallback) {
